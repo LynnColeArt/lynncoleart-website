@@ -69,6 +69,10 @@ module.exports = function(eleventyConfig) {
     return array.slice(0, limit);
   });
   
+  eleventyConfig.addFilter("concat", (arr1, arr2) => {
+    return (arr1 || []).concat(arr2 || []);
+  });
+  
   eleventyConfig.addFilter("markdown", (content) => {
     return markdownLibrary.render(content || '');
   });

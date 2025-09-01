@@ -7,30 +7,37 @@ description: Latest posts and galleries from the Mad Scientist of AI
 <h1>Timeline</h1>
 
 <div class="timeline">
-  {% for item in collections.posts | reverse | limit(20) %}
+  {%- set allItems = collections.posts | concat(collections.galleries) | sort(true, false, 'date') | reverse -%}
+  {%- for item in allItems | limit(20) -%}
+  {%- if not item.data.draft -%}
   <article class="timeline-item">
     <time class="timeline-meta" datetime="{{ item.date | htmlDateString }}">
       {{ item.date | dateDisplay }}
-      {% if item.data.type == 'gallery' %}
+      {%- if item.data.layout == 'gallery.njk' or item.url.indexOf('/galleries/') >= 0 -%}
       · Gallery
-      {% else %}
+      {%- else -%}
       · Post
-      {% endif %}
+      {%- endif -%}
     </time>
     
     <h2 class="timeline-title">
       <a href="{{ item.url }}">{{ item.data.title }}</a>
     </h2>
     
-    {% if item.data.excerpt %}
+    {%- if item.data.excerpt -%}
     <p class="timeline-excerpt">{{ item.data.excerpt }}</p>
-    {% endif %}
+    {%- elif item.data.description -%}
+    <p class="timeline-excerpt">{{ item.data.description }}</p>
+    {%- endif -%}
     
+    {%- if item.data.tags and item.data.tags.length > 0 -%}
     <div class="timeline-tags">
-      {% for tag in item.data.tags %}
+      {%- for tag in item.data.tags -%}
       <a href="/tags/{{ tag | slug }}/" class="tag">#{{ tag }}</a>
-      {% endfor %}
+      {%- endfor -%}
     </div>
+    {%- endif -%}
   </article>
-  {% endfor %}
+  {%- endif -%}
+  {%- endfor -%}
 </div>

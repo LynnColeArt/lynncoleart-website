@@ -11,28 +11,45 @@ pagination:
   addAllPagesToCollections: true
 layout: base.njk
 eleventyComputed:
-  title: "Posts tagged '{{ tag }}'"
+  title: "Tagged '{{ tag }}'"
 permalink: /tags/{{ tag | slug }}/
 ---
 
-<div class="container">
-  <h1>Posts tagged "{{ tag }}"</h1>
-  
-  <div class="post-list">
-    {%- for post in collections[tag] | reverse -%}
-    {%- if post.data.layout == 'post.njk' and not post.data.draft -%}
-    <article class="post-card">
-      <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
-      <div class="post-meta">
-        <time datetime="{{ post.date | htmlDateString }}">{{ post.date | dateDisplay }}</time>
-      </div>
-      {%- if post.data.excerpt -%}
-      <p>{{ post.data.excerpt }}</p>
+<h1>Tagged "{{ tag }}"</h1>
+
+<div class="timeline">
+  {%- for item in collections[tag] | reverse -%}
+  {%- if not item.data.draft -%}
+  <article class="timeline-item">
+    <time class="timeline-meta" datetime="{{ item.date | htmlDateString }}">
+      {{ item.date | dateDisplay }}
+      {%- if item.data.layout == 'gallery.njk' or item.url.indexOf('/galleries/') >= 0 -%}
+      · Gallery
+      {%- else -%}
+      · Post
       {%- endif -%}
-    </article>
+    </time>
+    
+    <h2 class="timeline-title">
+      <a href="{{ item.url }}">{{ item.data.title }}</a>
+    </h2>
+    
+    {%- if item.data.excerpt -%}
+    <p class="timeline-excerpt">{{ item.data.excerpt }}</p>
+    {%- elif item.data.description -%}
+    <p class="timeline-excerpt">{{ item.data.description }}</p>
     {%- endif -%}
-    {%- endfor -%}
-  </div>
-  
-  <p><a href="/blog/">← Back to all posts</a></p>
+    
+    {%- if item.data.tags and item.data.tags.length > 0 -%}
+    <div class="timeline-tags">
+      {%- for t in item.data.tags -%}
+      <a href="/tags/{{ t | slug }}/" class="tag{%- if t == tag %} active{%- endif -%}">#{{ t }}</a>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </article>
+  {%- endif -%}
+  {%- endfor -%}
 </div>
+
+<p><a href="/">← Back to timeline</a></p>

@@ -148,6 +148,12 @@ body {
   box-shadow: 0 0 10px rgba(236, 72, 153, 0.3);
 }
 
+.tag.active {
+  background-color: var(--purple-primary);
+  border-color: var(--purple-primary);
+  color: var(--text-primary);
+}
+
 /* Main Content */
 .content {
   flex: 1;
