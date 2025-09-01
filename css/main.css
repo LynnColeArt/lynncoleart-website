@@ -252,21 +252,19 @@ a:hover {
 .timeline-gallery {
   position: relative;
   overflow: hidden;
+  isolation: isolate;
 }
 
-.timeline-gallery::after {
+.timeline-gallery::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-image: inherit;
   opacity: 0.11;
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
 }
 
