@@ -21,10 +21,17 @@
     "icon": "image"
   },
   {
+    "id": "projects",
+    "title": "Projects",
+    "url": "/projects/",
+    "order": 4,
+    "icon": "code"
+  },
+  {
     "id": "about",
     "title": "About",
     "url": "/about/",
-    "order": 4,
+    "order": 5,
     "icon": "user"
   }
 ]

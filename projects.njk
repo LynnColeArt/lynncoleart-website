@@ -1,0 +1,114 @@
+---
+layout: base.njk
+title: Projects
+permalink: /projects/
+eleventyNavigation:
+  key: Projects
+  order: 4
+---
+
+<div class="container">
+  <h1>GitHub Projects</h1>
+  
+  {%- if github.user -%}
+  <div class="github-profile">
+    <img src="{{ github.user.avatar }}" alt="{{ github.user.name }}" class="github-avatar">
+    <div class="github-info">
+      <h2>{{ github.user.name }}</h2>
+      {%- if github.user.bio -%}
+      <p>{{ github.user.bio }}</p>
+      {%- endif -%}
+      <div class="github-stats">
+        <span>📦 {{ github.user.public_repos }} public repos</span>
+        <span>👥 {{ github.user.followers }} followers</span>
+        <a href="{{ github.user.profile_url }}" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+    </div>
+  </div>
+  {%- endif -%}
+  
+  <div class="projects-filters">
+    <button class="filter-btn active" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="JavaScript">JavaScript</button>
+    <button class="filter-btn" data-filter="Python">Python</button>
+    <button class="filter-btn" data-filter="TypeScript">TypeScript</button>
+  </div>
+  
+  <div class="projects-grid">
+    {%- for repo in github.repos -%}
+    <article class="project-card" data-language="{{ repo.language }}">
+      <div class="project-header">
+        <h3><a href="{{ repo.url }}" target="_blank" rel="noopener">{{ repo.name }}</a></h3>
+        {%- if repo.homepage -%}
+        <a href="{{ repo.homepage }}" class="project-link" target="_blank" rel="noopener" title="View live site">🔗</a>
+        {%- endif -%}
+      </div>
+      
+      {%- if repo.description -%}
+      <p class="project-description">{{ repo.description }}</p>
+      {%- endif -%}
+      
+      <div class="project-meta">
+        {%- if repo.language -%}
+        <span class="project-language" style="--lang-color: {{ repo.language | languageColor }}">{{ repo.language }}</span>
+        {%- endif -%}
+        
+        {%- if repo.stars > 0 -%}
+        <span class="project-stars">⭐ {{ repo.stars }}</span>
+        {%- endif -%}
+        
+        {%- if repo.forks > 0 -%}
+        <span class="project-forks">🍴 {{ repo.forks }}</span>
+        {%- endif -%}
+      </div>
+      
+      {%- if repo.topics.length > 0 -%}
+      <div class="project-topics">
+        {%- for topic in repo.topics -%}
+        <span class="topic-tag">{{ topic }}</span>
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+      
+      <time class="project-updated" datetime="{{ repo.updated }}">
+        Updated {{ repo.updated | dateDisplay }}
+      </time>
+    </article>
+    {%- endfor -%}
+  </div>
+  
+  {%- if github.repos.length == 0 -%}
+  <p class="empty-state">No projects found. Check back later!</p>
+  {%- endif -%}
+  
+  <p class="update-note">
+    <small>Last updated: {{ github.fetched_at | dateDisplay }}</small>
+  </p>
+</div>
+
+<script>
+// Filter projects by language
+document.addEventListener('DOMContentLoaded', function() {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const projects = document.querySelectorAll('.project-card');
+  
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const filter = this.dataset.filter;
+      
+      // Update active button
+      filterButtons.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      
+      // Filter projects
+      projects.forEach(project => {
+        if (filter === 'all' || project.dataset.language === filter) {
+          project.style.display = 'block';
+        } else {
+          project.style.display = 'none';
+        }
+      });
+    });
+  });
+});
+</script>

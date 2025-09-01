@@ -73,6 +73,30 @@ module.exports = function(eleventyConfig) {
     return markdownLibrary.render(content || '');
   });
   
+  // GitHub language colors
+  eleventyConfig.addFilter("languageColor", (language) => {
+    const colors = {
+      JavaScript: '#f1e05a',
+      TypeScript: '#2b7489',
+      Python: '#3572A5',
+      HTML: '#e34c26',
+      CSS: '#563d7c',
+      Java: '#b07219',
+      Ruby: '#701516',
+      Go: '#00ADD8',
+      Rust: '#dea584',
+      PHP: '#4F5D95',
+      Swift: '#ffac45',
+      Kotlin: '#F18E33',
+      'C++': '#f34b7d',
+      'C#': '#178600',
+      Shell: '#89e051',
+      Vue: '#4fc08d',
+      React: '#61dafb'
+    };
+    return colors[language] || '#6e7681';
+  });
+  
   // Process gallery and suno embeds
   eleventyConfig.addFilter("processGalleryEmbeds", async function(content) {
     if (!content) return content;
