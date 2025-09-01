@@ -37,20 +37,25 @@ module.exports = async function() {
           // Parse metadata from issue body
           const metadata = parseIssueMetadata(issue.body);
           
-          // Fetch first image from comments
+          // Fetch all images from comments
           let firstImage = null;
+          let images = [];
           try {
             const commentsResponse = await fetch(
-              `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues/${issue.number}/comments?per_page=10`,
+              `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues/${issue.number}/comments?per_page=100`,
               { headers }
             );
             if (commentsResponse.ok) {
               const comments = await commentsResponse.json();
               for (const comment of comments) {
-                const imageMatch = comment.body.match(/!\[.*?\]\((.*?)\)/);
-                if (imageMatch && imageMatch[1]) {
-                  firstImage = imageMatch[1];
-                  break;
+                const imageMatches = comment.body.matchAll(/!\[.*?\]\((.*?)\)/g);
+                for (const match of imageMatches) {
+                  if (match[1]) {
+                    images.push(match[1]);
+                    if (!firstImage) {
+                      firstImage = match[1];
+                    }
+                  }
                 }
               }
             }
@@ -65,8 +70,9 @@ module.exports = async function() {
             date: metadata.date || issue.created_at,
             tags: metadata.tags || [],
             gallery: metadata.gallery || '',
-            imageCount: metadata.imageCount || 0,
+            imageCount: metadata.imageCount || images.length,
             firstImage: firstImage,
+            images: images, // Include all images
             url: `/gallery/${issue.number}/`, // URL for individual gallery page
             created: issue.created_at,
             updated: issue.updated_at

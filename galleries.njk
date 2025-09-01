@@ -10,10 +10,12 @@ eleventyNavigation:
 <div class="galleries-grid">
   {%- for gallery in galleries | reverse -%}
   <a href="/gallery/{{ gallery.number }}/" class="gallery-item" data-issue="{{ gallery.number }}">
-    <div class="gallery-thumb" data-issue="{{ gallery.number }}">
-      <div class="gallery-loading">
-        <div class="loading-spinner"></div>
-      </div>
+    <div class="gallery-thumb">
+      {%- if gallery.firstImage -%}
+      <img src="{{ gallery.firstImage }}" alt="{{ gallery.title }} thumbnail" loading="lazy">
+      {%- else -%}
+      <div class="gallery-error">No preview</div>
+      {%- endif -%}
       <span class="image-count">{{ gallery.imageCount }} image{%- if gallery.imageCount != 1 -%}s{%- endif -%}</span>
     </div>
     <div class="gallery-info">

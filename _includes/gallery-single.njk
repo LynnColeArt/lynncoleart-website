@@ -32,9 +32,15 @@ layout: base.njk
 
   <div class="gallery-single-content">
     <div class="embedded-gallery" data-issue="{{ issueNumber }}">
-      <div class="gallery-loading">
-        <div class="loading-spinner"></div>
-        <span>Loading gallery...</span>
+      <div class="loaded-gallery">
+        <div class="gallery-grid">
+          {%- for image in gallery.images -%}
+          <img src="{{ image }}" 
+               alt="{{ title }} - Image {{ loop.index }}" 
+               loading="lazy"
+               onclick="openLightbox('{{ image }}', '{{ title }} - Image {{ loop.index }}')">
+          {%- endfor -%}
+        </div>
       </div>
     </div>
   </div>
