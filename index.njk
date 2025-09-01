@@ -7,12 +7,39 @@ description: Latest posts and galleries from the Mad Scientist of AI
 <h1>Timeline</h1>
 
 <div class="timeline">
-  {%- for item in collections.posts | reverse | limit(20) -%}
+  {%- set posts = collections.posts | reverse -%}
+  {%- set allItems = [] -%}
+  
+  {# Add posts to timeline #}
+  {%- for post in posts -%}
+    {%- set allItems = (allItems.push(post), allItems) -%}
+  {%- endfor -%}
+  
+  {# Add galleries to timeline #}
+  {%- for gallery in galleries -%}
+    {%- set galleryItem = {
+      date: gallery.date,
+      url: '/gallery/' + gallery.number + '/',
+      data: {
+        title: gallery.title,
+        description: gallery.description,
+        tags: gallery.tags,
+        type: 'gallery',
+        imageCount: gallery.imageCount
+      }
+    } -%}
+    {%- set allItems = (allItems.push(galleryItem), allItems) -%}
+  {%- endfor -%}
+  
+  {# Sort by date and limit to 20 most recent #}
+  {%- set sortedItems = allItems | sort(true, false, 'date') | reverse | limit(20) -%}
+  
+  {%- for item in sortedItems -%}
   {%- if not item.data.draft -%}
   <article class="timeline-item">
     <time class="timeline-meta" datetime="{{ item.date | htmlDateString }}">
       {{ item.date | dateDisplay }}
-      {%- if item.data.layout == 'gallery.njk' or item.url.indexOf('/galleries/') >= 0 -%}
+      {%- if item.data.type == 'gallery' -%}
       · Gallery
       {%- else -%}
       · Post
@@ -23,7 +50,9 @@ description: Latest posts and galleries from the Mad Scientist of AI
       <a href="{{ item.url }}">{{ item.data.title }}</a>
     </h2>
     
-    {%- if item.data.excerpt -%}
+    {%- if item.data.type == 'gallery' -%}
+    <p class="timeline-excerpt">{{ item.data.imageCount }} image{%- if item.data.imageCount != 1 -%}s{%- endif -%}{%- if item.data.description -%} · {{ item.data.description }}{%- endif -%}</p>
+    {%- elif item.data.excerpt -%}
     <p class="timeline-excerpt">{{ item.data.excerpt }}</p>
     {%- elif item.data.description -%}
     <p class="timeline-excerpt">{{ item.data.description }}</p>
