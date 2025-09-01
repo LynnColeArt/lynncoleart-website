@@ -25,7 +25,9 @@ description: Latest posts and galleries from the Mad Scientist of AI
         description: gallery.description,
         tags: gallery.tags,
         type: 'gallery',
-        imageCount: gallery.imageCount
+        imageCount: gallery.imageCount,
+        firstImage: gallery.firstImage,
+        issueNumber: gallery.number
       }
     } -%}
     {%- set allItems = (allItems.push(galleryItem), allItems) -%}
@@ -36,14 +38,11 @@ description: Latest posts and galleries from the Mad Scientist of AI
   
   {%- for item in sortedItems -%}
   {%- if not item.data.draft -%}
-  <article class="timeline-item">
+  <article class="timeline-item{%- if item.data.type == 'gallery' %} timeline-gallery{%- endif -%}"
+          {%- if item.data.type == 'gallery' and item.data.firstImage %} style="background-image: url('{{ item.data.firstImage }}');"{% endif -%}>
     <time class="timeline-meta" datetime="{{ item.date | htmlDateString }}">
       {{ item.date | dateDisplay }}
-      {%- if item.data.type == 'gallery' -%}
-      · Gallery
-      {%- else -%}
-      · Post
-      {%- endif -%}
+      {%- if item.data.type == 'gallery' %} · Gallery{%- else %} · Post{%- endif -%}
     </time>
     
     <h2 class="timeline-title">
@@ -51,7 +50,7 @@ description: Latest posts and galleries from the Mad Scientist of AI
     </h2>
     
     {%- if item.data.type == 'gallery' -%}
-    <p class="timeline-excerpt">{{ item.data.imageCount }} image{%- if item.data.imageCount != 1 -%}s{%- endif -%}{%- if item.data.description -%} · {{ item.data.description }}{%- endif -%}</p>
+    <p class="timeline-excerpt">{{ item.data.imageCount }} image{%- if item.data.imageCount != 1 -%}s{%- endif -%}{%- if item.data.description %} · {{ item.data.description }}{%- endif -%}</p>
     {%- elif item.data.excerpt -%}
     <p class="timeline-excerpt">{{ item.data.excerpt }}</p>
     {%- elif item.data.description -%}

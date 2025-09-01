@@ -30,28 +30,52 @@ module.exports = async function() {
     const issues = await response.json();
     
     // Process issues to extract gallery data
-    const galleries = issues
-      .filter(issue => !issue.pull_request) // Exclude pull requests
-      .map(issue => {
-        // Parse metadata from issue body
-        const metadata = parseIssueMetadata(issue.body);
-        
-        return {
-          number: issue.number,
-          title: metadata.title || issue.title.replace('[Media] ', ''),
-          description: metadata.description || '',
-          date: metadata.date || issue.created_at,
-          tags: metadata.tags || [],
-          gallery: metadata.gallery || '',
-          imageCount: metadata.imageCount || 0,
-          url: `/gallery/${issue.number}/`, // URL for individual gallery page
-          created: issue.created_at,
-          updated: issue.updated_at
-        };
-      })
-      .filter(gallery => gallery.imageCount > 0); // Only include galleries with images
+    const galleries = await Promise.all(
+      issues
+        .filter(issue => !issue.pull_request) // Exclude pull requests
+        .map(async issue => {
+          // Parse metadata from issue body
+          const metadata = parseIssueMetadata(issue.body);
+          
+          // Fetch first image from comments
+          let firstImage = null;
+          try {
+            const commentsResponse = await fetch(
+              `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues/${issue.number}/comments?per_page=10`,
+              { headers }
+            );
+            if (commentsResponse.ok) {
+              const comments = await commentsResponse.json();
+              for (const comment of comments) {
+                const imageMatch = comment.body.match(/!\[.*?\]\((.*?)\)/);
+                if (imageMatch && imageMatch[1]) {
+                  firstImage = imageMatch[1];
+                  break;
+                }
+              }
+            }
+          } catch (error) {
+            console.error(`Error fetching comments for issue ${issue.number}:`, error);
+          }
+          
+          return {
+            number: issue.number,
+            title: metadata.title || issue.title.replace('[Media] ', ''),
+            description: metadata.description || '',
+            date: metadata.date || issue.created_at,
+            tags: metadata.tags || [],
+            gallery: metadata.gallery || '',
+            imageCount: metadata.imageCount || 0,
+            firstImage: firstImage,
+            url: `/gallery/${issue.number}/`, // URL for individual gallery page
+            created: issue.created_at,
+            updated: issue.updated_at
+          };
+        })
+    );
     
-    return galleries;
+    // Only include galleries with images
+    return galleries.filter(gallery => gallery.imageCount > 0);
     
   } catch (error) {
     console.error('Error fetching galleries:', error);

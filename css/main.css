@@ -239,12 +239,39 @@ a:hover {
   background-color: var(--purple-primary);
   border-radius: 50%;
   box-shadow: 0 0 10px var(--purple-primary);
+  z-index: 2;
 }
 
 .timeline-item:hover {
   transform: translateX(5px);
   border-color: var(--purple-primary);
   box-shadow: 0 5px 20px rgba(139, 92, 246, 0.2);
+}
+
+/* Gallery timeline items with subtle background */
+.timeline-gallery {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.timeline-gallery::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-secondary);
+  opacity: 0.89; /* This makes the image show at 11% opacity */
+  z-index: 0;
+  border-radius: 0.5rem;
+}
+
+.timeline-gallery > * {
+  position: relative;
+  z-index: 1;
 }
 
 .timeline-meta {
