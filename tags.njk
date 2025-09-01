@@ -33,7 +33,8 @@ permalink: /tags/{{ tag | slug }}/
           description: gallery.description,
           tags: gallery.tags,
           type: 'gallery',
-          imageCount: gallery.imageCount
+          imageCount: gallery.imageCount,
+          firstImage: gallery.firstImage
         }
       } -%}
       {%- set taggedGalleries = (taggedGalleries.push(galleryItem), taggedGalleries) -%}
@@ -45,7 +46,12 @@ permalink: /tags/{{ tag | slug }}/
   
   {%- for item in allTaggedItems -%}
   {%- if not item.data.draft -%}
-  <article class="timeline-item">
+  <article class="timeline-item{%- if item.data.type == 'gallery' %} timeline-gallery{%- endif -%}">
+    {%- if item.data.type == 'gallery' and item.data.firstImage -%}
+    <div class="timeline-gallery-bg" style="background-image: url('{{ item.data.firstImage }}');"></div>
+    <div class="timeline-gallery-content">
+    {%- endif -%}
+    
     <time class="timeline-meta" datetime="{{ item.date | htmlDateString }}">
       {{ item.date | dateDisplay }}
       {%- if item.data.type == 'gallery' %} · Gallery{%- else %} · Post{%- endif -%}
@@ -68,6 +74,10 @@ permalink: /tags/{{ tag | slug }}/
       {%- for t in item.data.tags -%}
       <a href="/tags/{{ t | slug }}/" class="tag{%- if t == tag %} active{%- endif -%}">#{{ t }}</a>
       {%- endfor -%}
+    </div>
+    {%- endif -%}
+    
+    {%- if item.data.type == 'gallery' and item.data.firstImage -%}
     </div>
     {%- endif -%}
   </article>
