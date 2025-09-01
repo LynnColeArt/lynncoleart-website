@@ -14,31 +14,31 @@
     "icon": "user"
   },
   {
-    "id": "1756747212040",
-    "title": "Where to Find Lynn",
-    "url": "/findme",
-    "icon": "",
-    "order": 3
+    "id": "blog",
+    "title": "Blog",
+    "url": "/blog/",
+    "order": 3,
+    "icon": "file-text"
+  },
+  {
+    "id": "projects",
+    "title": "Github Projects",
+    "url": "/projects/",
+    "order": 4,
+    "icon": "code"
   },
   {
     "id": "galleries",
     "title": "Pretty Pictures",
     "url": "/galleries/",
-    "order": 4,
+    "order": 5,
     "icon": "image"
   },
   {
-    "id": "projects",
-    "title": "Projects",
-    "url": "/projects/",
-    "order": 5,
-    "icon": "code"
-  },
-  {
-    "id": "blog",
-    "title": "Blog",
-    "url": "/blog/",
-    "order": 6,
-    "icon": "file-text"
+    "id": "1756747212040",
+    "title": "Where to Find Lynn",
+    "url": "/findme",
+    "icon": "",
+    "order": 6
   }
 ]
