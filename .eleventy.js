@@ -73,6 +73,21 @@ module.exports = function(eleventyConfig) {
     return (arr1 || []).concat(arr2 || []);
   });
   
+  eleventyConfig.addFilter("unique", (array) => {
+    return [...new Set(array)];
+  });
+  
+  eleventyConfig.addFilter("map", (array, prop) => {
+    return array.map(item => item[prop]);
+  });
+  
+  eleventyConfig.addFilter("reject", (array, test) => {
+    if (test === 'falsy') {
+      return array.filter(Boolean);
+    }
+    return array.filter(item => !item);
+  });
+  
   eleventyConfig.addFilter("markdown", (content) => {
     return markdownLibrary.render(content || '');
   });

@@ -27,11 +27,12 @@ eleventyNavigation:
   </div>
   {%- endif -%}
   
+  {%- set languages = github.repos | map('language') | unique | reject('falsy') | sort -%}
   <div class="projects-filters">
     <button class="filter-btn active" data-filter="all">All Projects</button>
-    <button class="filter-btn" data-filter="JavaScript">JavaScript</button>
-    <button class="filter-btn" data-filter="Python">Python</button>
-    <button class="filter-btn" data-filter="TypeScript">TypeScript</button>
+    {%- for language in languages -%}
+    <button class="filter-btn" data-filter="{{ language }}">{{ language }}</button>
+    {%- endfor -%}
   </div>
   
   <div class="projects-grid">
