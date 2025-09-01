@@ -1,0 +1,30 @@
+---
+layout: base.njk
+title: Galleries
+permalink: /galleries/
+eleventyNavigation:
+  key: Galleries
+  order: 3
+---
+
+<div class="container">
+  <h1>Art Galleries</h1>
+  
+  <div class="gallery-grid">
+    {%- for gallery in collections.galleries | reverse -%}
+    <div class="gallery-card">
+      <h2><a href="{{ gallery.url }}">{{ gallery.data.title }}</a></h2>
+      {%- if gallery.data.date -%}
+      <time datetime="{{ gallery.date | htmlDateString }}">{{ gallery.date | dateDisplay }}</time>
+      {%- endif -%}
+      {%- if gallery.data.description -%}
+      <p>{{ gallery.data.description }}</p>
+      {%- endif -%}
+    </div>
+    {%- endfor -%}
+  </div>
+  
+  {%- if collections.galleries.length == 0 -%}
+  <p class="empty-state">No galleries yet. Check back soon!</p>
+  {%- endif -%}
+</div>
