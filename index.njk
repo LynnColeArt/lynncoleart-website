@@ -7,8 +7,7 @@ description: Latest posts and galleries from the Mad Scientist of AI
 <h1>Timeline</h1>
 
 <div class="timeline">
-  {%- set allItems = collections.posts | concat(collections.galleries) | sort(true, false, 'date') | reverse -%}
-  {%- for item in allItems | limit(20) -%}
+  {%- for item in collections.posts | reverse | limit(20) -%}
   {%- if not item.data.draft -%}
   <article class="timeline-item">
     <time class="timeline-meta" datetime="{{ item.date | htmlDateString }}">

@@ -7,24 +7,76 @@ eleventyNavigation:
   order: 3
 ---
 
-<div class="container">
-  <h1>Art Galleries</h1>
-  
-  <div class="gallery-grid">
-    {%- for gallery in collections.galleries | reverse -%}
-    <div class="gallery-card">
-      <h2><a href="{{ gallery.url }}">{{ gallery.data.title }}</a></h2>
-      {%- if gallery.data.date -%}
+<h1>Art Galleries</h1>
+
+<div class="gallery-grid">
+  {%- for gallery in galleries | reverse -%}
+  <div class="gallery-card" data-issue="{{ gallery.number }}">
+    <div class="embedded-gallery" data-issue="{{ gallery.number }}">
+      <div class="gallery-loading">Loading gallery...</div>
+    </div>
+    <div class="gallery-info">
+      <h2>{{ gallery.title }}</h2>
+      {%- if gallery.date -%}
       <time datetime="{{ gallery.date | htmlDateString }}">{{ gallery.date | dateDisplay }}</time>
       {%- endif -%}
-      {%- if gallery.data.description -%}
-      <p>{{ gallery.data.description }}</p>
+      {%- if gallery.description -%}
+      <p>{{ gallery.description }}</p>
       {%- endif -%}
+      <p class="gallery-meta">
+        <span>{{ gallery.imageCount }} image{%- if gallery.imageCount != 1 -%}s{%- endif -%}</span>
+        {%- if gallery.tags and gallery.tags.length > 0 -%}
+        · 
+        {%- for tag in gallery.tags -%}
+        <a href="/tags/{{ tag | slug }}/" class="tag">#{{ tag }}</a>
+        {%- endfor -%}
+        {%- endif -%}
+      </p>
     </div>
-    {%- endfor -%}
   </div>
-  
-  {%- if collections.galleries.length == 0 -%}
-  <p class="empty-state">No galleries yet. Check back soon!</p>
-  {%- endif -%}
+  {%- endfor -%}
 </div>
+
+{%- if galleries.length == 0 -%}
+<p class="empty-state">No galleries yet. Check back soon!</p>
+{%- endif -%}
+
+<style>
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.gallery-card {
+  background-color: var(--bg-secondary);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+}
+
+.gallery-info {
+  padding: 1.5rem;
+}
+
+.gallery-info h2 {
+  margin-bottom: 0.5rem;
+}
+
+.gallery-meta {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.embedded-gallery {
+  min-height: 200px;
+  background-color: var(--bg-tertiary);
+}
+</style>
