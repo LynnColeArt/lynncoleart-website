@@ -36,7 +36,7 @@ eleventyNavigation:
   </div>
   
   <div class="projects-grid">
-    {%- for repo in github.repos -%}
+    {%- for repo in github.repos | sort(false, true, 'name') -%}
     <article class="project-card" data-language="{{ repo.language }}">
       <div class="project-header">
         <h3><a href="{{ repo.url }}" target="_blank" rel="noopener">{{ repo.name }}</a></h3>
