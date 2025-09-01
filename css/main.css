@@ -600,6 +600,11 @@ code:not(pre code) {
   box-shadow: 0 5px 20px rgba(139, 92, 246, 0.2);
 }
 
+.project-card.pinned {
+  border-color: var(--purple-primary);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
+}
+
 .project-header {
   display: flex;
   justify-content: space-between;
