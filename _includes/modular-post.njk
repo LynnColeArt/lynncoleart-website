@@ -1,0 +1,188 @@
+---
+layout: base.njk
+---
+
+<article class="post modular-post">
+  <header class="post-header">
+    <h1>{{ title }}</h1>
+    <div class="post-meta">
+      <time datetime="{{ date | htmlDateString }}">{{ date | dateDisplay }}</time>
+      {% if tags %}
+      <div class="post-tags">
+        {% for tag in tags %}
+        <a href="/tags/{{ tag | slug }}/" class="tag">#{{ tag }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </header>
+  
+  <div class="post-content modular-content">
+    {% for block in blocks %}
+      {% if block.type == "text" %}
+      <div class="content-block text-block">
+        {{ block.content | markdown | safe }}
+      </div>
+      
+      {% elif block.type == "image" %}
+      <div class="content-block image-block">
+        <img src="{{ block.url }}" alt="{{ block.alt }}" loading="lazy">
+      </div>
+      
+      {% elif block.type == "gallery" %}
+      <div class="content-block gallery-block">
+        {% if block.source == "issue" and block.issueNumber %}
+        <div class="embedded-gallery" data-issue="{{ block.issueNumber }}">
+          <div class="gallery-loading">Loading gallery #{{ block.issueNumber }}...</div>
+        </div>
+        {% else %}
+        <div class="gallery-grid">
+          {% for image in block.images %}
+          <img src="{{ image }}" alt="Gallery image" loading="lazy">
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      
+      {% elif block.type == "video" %}
+      <div class="content-block video-block">
+        {% if block.platform == "youtube" %}
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/{{ block.id }}?rel=0{% if block.autoplay %}&autoplay=1{% endif %}{% if block.loop %}&loop=1{% endif %}" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen></iframe>
+        </div>
+        {% elif block.platform == "vimeo" %}
+        <div class="video-wrapper">
+          <iframe src="https://player.vimeo.com/video/{{ block.id }}?{% if block.autoplay %}autoplay=1&{% endif %}{% if block.loop %}loop=1{% endif %}" 
+                  frameborder="0" 
+                  allow="autoplay; fullscreen; picture-in-picture" 
+                  allowfullscreen></iframe>
+        </div>
+        {% else %}
+        <video controls {% if block.autoplay %}autoplay{% endif %} {% if block.loop %}loop{% endif %}>
+          <source src="{{ block.id }}" type="video/mp4">
+        </video>
+        {% endif %}
+      </div>
+      
+      {% elif block.type == "code" %}
+      <div class="content-block code-block">
+        <pre><code class="language-{{ block.language }}">{{ block.code }}</code></pre>
+      </div>
+      
+      {% elif block.type == "embed" %}
+      <div class="content-block embed-block">
+        {{ block.html | safe }}
+      </div>
+      
+      {% elif block.type == "suno" %}
+      <div class="content-block suno-block">
+        {% if block.songId %}
+        <iframe 
+          src="https://suno.com/embed/{{ block.songId }}" 
+          width="100%" 
+          height="240" 
+          frameborder="0" 
+          allow="autoplay"
+          loading="lazy">
+        </iframe>
+        {% endif %}
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</article>
+
+<style>
+.modular-content {
+  max-width: 100%;
+}
+
+.content-block {
+  margin: 2rem 0;
+}
+
+.text-block {
+  max-width: 65ch;
+}
+
+.image-block img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-block .gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.gallery-block img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-block img:hover {
+  transform: scale(1.05);
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-block video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.code-block pre {
+  max-width: 100%;
+}
+
+.embed-block {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.suno-block {
+  max-width: 100%;
+  margin: 2rem 0;
+}
+
+.suno-block iframe {
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .gallery-block .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .suno-block iframe {
+    height: 200px;
+  }
+}
+</style>

@@ -1,0 +1,36 @@
+---
+layout: base.njk
+title: Timeline
+description: Latest posts and galleries from the Mad Scientist of AI
+---
+
+<h1>Timeline</h1>
+
+<div class="timeline">
+  {% for item in collections.posts | reverse | limit(20) %}
+  <article class="timeline-item">
+    <time class="timeline-meta" datetime="{{ item.date | htmlDateString }}">
+      {{ item.date | dateDisplay }}
+      {% if item.data.type == 'gallery' %}
+      · Gallery
+      {% else %}
+      · Post
+      {% endif %}
+    </time>
+    
+    <h2 class="timeline-title">
+      <a href="{{ item.url }}">{{ item.data.title }}</a>
+    </h2>
+    
+    {% if item.data.excerpt %}
+    <p class="timeline-excerpt">{{ item.data.excerpt }}</p>
+    {% endif %}
+    
+    <div class="timeline-tags">
+      {% for tag in item.data.tags %}
+      <a href="/tags/{{ tag | slug }}/" class="tag">#{{ tag }}</a>
+      {% endfor %}
+    </div>
+  </article>
+  {% endfor %}
+</div>

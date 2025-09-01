@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | Lynn Cole Art</title>
+    <meta name="description" content="{{ description or 'Mad Scientist of AI - Art, Code, and Digital Experiments' }}">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lynncole.art{{ page.url }}">
+    
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Lynn Cole Art RSS Feed" href="/feed.xml">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/prism-tomorrow.css">
+    
+    <!-- Mermaid -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({ theme: 'dark', themeVariables: { primaryColor: '#8B5CF6', primaryTextColor: '#F3F4F6', primaryBorderColor: '#A855F7', lineColor: '#EC4899', secondaryColor: '#1F2937', tertiaryColor: '#111827' }});</script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Lynn Cole",
+        "description": "Mad Scientist of AI - Artist and Developer",
+        "url": "https://lynncole.art",
+        "sameAs": [
+            "https://github.com/LynnColeArt"
+        ]
+    }
+    </script>
+</head>
+<body>
+    <div class="site-wrapper">
+        <nav class="sidebar" aria-label="Main navigation">
+            <div class="site-header">
+                <h1><a href="/">Lynn Cole Art</a></h1>
+                <p class="tagline">Mad Scientist of AI</p>
+            </div>
+            
+            <ul class="nav-list">
+                {% for item in navigation | sort(false, false, 'order') %}
+                <li>
+                    <a href="{{ item.url }}" 
+                       {% if (page.url == item.url) or (item.url != "/" and page.url.startsWith(item.url)) %}aria-current="page"{% endif %}>
+                        {{ item.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            
+            <div class="nav-tags">
+                <h3>Explore by Tag</h3>
+                <ul class="tag-cloud">
+                    {% for tag in collections.tagList | limit(10) %}
+                    <li><a href="/tags/{{ tag | slug }}/" class="tag">#{{ tag }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </nav>
+        
+        <main class="content">
+            {{ content | safe }}
+        </main>
+    </div>
+    
+    <script src="/js/main.js"></script>
+    <script src="/js/gallery-loader.js"></script>
+</body>
+</html>

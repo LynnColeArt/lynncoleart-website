@@ -1,0 +1,30 @@
+[
+  {
+    "id": "home",
+    "title": "Timeline",
+    "url": "/",
+    "order": 1,
+    "icon": "home"
+  },
+  {
+    "id": "blog",
+    "title": "Blog",
+    "url": "/blog/",
+    "order": 2,
+    "icon": "file-text"
+  },
+  {
+    "id": "galleries",
+    "title": "Galleries",
+    "url": "/galleries/",
+    "order": 3,
+    "icon": "image"
+  },
+  {
+    "id": "about",
+    "title": "About",
+    "url": "/about/",
+    "order": 4,
+    "icon": "user"
+  }
+]
