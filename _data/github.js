@@ -40,6 +40,7 @@ module.exports = async function() {
     // Process and filter repos
     const processedRepos = repos
       .filter(repo => !repo.fork) // Exclude forks by default
+      .filter(repo => repo.name !== 'lynncoleart-website') // Exclude this website
       .map(repo => ({
         name: repo.name,
         description: repo.description,
