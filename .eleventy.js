@@ -44,8 +44,10 @@ module.exports = function(eleventyConfig) {
     return collectionApi.getFilteredByGlob("galleries/*.md").sort((a, b) => b.date - a.date);
   });
 
-  eleventyConfig.addCollection("tagList", function(collection) {
+  eleventyConfig.addCollection("tagList", async function(collection) {
     let tagSet = new Set();
+    
+    // Get tags from posts
     collection.getAll().forEach(item => {
       // Ensure tags is always an array
       let tags = item.data.tags;
@@ -56,6 +58,19 @@ module.exports = function(eleventyConfig) {
       }
       tags.forEach(tag => tagSet.add(tag));
     });
+    
+    // Get tags from galleries
+    try {
+      const galleries = await require('./_data/galleries.js')();
+      galleries.forEach(gallery => {
+        if (gallery.tags && Array.isArray(gallery.tags)) {
+          gallery.tags.forEach(tag => tagSet.add(tag));
+        }
+      });
+    } catch (err) {
+      console.error('Error loading gallery tags:', err);
+    }
+    
     return [...tagSet];
   });
 

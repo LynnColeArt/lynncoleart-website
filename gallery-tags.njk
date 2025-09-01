@@ -1,0 +1,66 @@
+---
+pagination:
+  data: allTags
+  size: 1
+  alias: tag
+permalink: /tags/{{ tag | slug }}/
+layout: base.njk
+eleventyComputed:
+  title: "Tagged '{{ tag }}'"
+renderData:
+  tag: "{{ tag }}"
+---
+
+<h1>Tagged "{{ tag }}"</h1>
+
+<div class="timeline">
+  {# Collect galleries with this tag #}
+  {%- set taggedItems = [] -%}
+  {%- for gallery in galleries -%}
+    {%- if gallery.tags and tag in gallery.tags -%}
+      {%- set galleryItem = {
+        date: gallery.date,
+        url: '/gallery/' + gallery.number + '/',
+        data: {
+          title: gallery.title,
+          description: gallery.description,
+          tags: gallery.tags,
+          type: 'gallery',
+          imageCount: gallery.imageCount
+        }
+      } -%}
+      {%- set taggedItems = (taggedItems.push(galleryItem), taggedItems) -%}
+    {%- endif -%}
+  {%- endfor -%}
+  
+  {# Sort items by date #}
+  {%- set sortedItems = taggedItems | sort(true, false, 'date') | reverse -%}
+  
+  {%- if sortedItems.length > 0 -%}
+    {%- for item in sortedItems -%}
+    <article class="timeline-item">
+      <time class="timeline-meta" datetime="{{ item.date | htmlDateString }}">
+        {{ item.date | dateDisplay }} · Gallery
+      </time>
+      
+      <h2 class="timeline-title">
+        <a href="{{ item.url }}">{{ item.data.title }}</a>
+      </h2>
+      
+      <p class="timeline-excerpt">{{ item.data.imageCount }} image{%- if item.data.imageCount != 1 -%}s{%- endif -%}{%- if item.data.description %} · {{ item.data.description }}{%- endif -%}</p>
+      
+      {%- if item.data.tags and item.data.tags.length > 0 -%}
+      <div class="timeline-tags">
+        {%- for t in item.data.tags -%}
+        <a href="/tags/{{ t | slug }}/" class="tag{%- if t == tag %} active{%- endif -%}">#{{ t }}</a>
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+    </article>
+    {%- endfor -%}
+  {%- else -%}
+    <p class="empty-state">No galleries found with this tag.</p>
+  {%- endif -%}
+</div>
+
+<p><a href="/">← Back to timeline</a></p>

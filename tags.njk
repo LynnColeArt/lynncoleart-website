@@ -18,23 +18,46 @@ permalink: /tags/{{ tag | slug }}/
 <h1>Tagged "{{ tag }}"</h1>
 
 <div class="timeline">
-  {%- for item in collections[tag] | reverse -%}
+  {# Collect posts with this tag #}
+  {%- set taggedPosts = collections[tag] | default([]) -%}
+  
+  {# Collect galleries with this tag #}
+  {%- set taggedGalleries = [] -%}
+  {%- for gallery in galleries -%}
+    {%- if gallery.tags and tag in gallery.tags -%}
+      {%- set galleryItem = {
+        date: gallery.date,
+        url: '/gallery/' + gallery.number + '/',
+        data: {
+          title: gallery.title,
+          description: gallery.description,
+          tags: gallery.tags,
+          type: 'gallery',
+          imageCount: gallery.imageCount
+        }
+      } -%}
+      {%- set taggedGalleries = (taggedGalleries.push(galleryItem), taggedGalleries) -%}
+    {%- endif -%}
+  {%- endfor -%}
+  
+  {# Combine and sort all items #}
+  {%- set allTaggedItems = taggedPosts | concat(taggedGalleries) | sort(true, false, 'date') | reverse -%}
+  
+  {%- for item in allTaggedItems -%}
   {%- if not item.data.draft -%}
   <article class="timeline-item">
     <time class="timeline-meta" datetime="{{ item.date | htmlDateString }}">
       {{ item.date | dateDisplay }}
-      {%- if item.data.layout == 'gallery.njk' or item.url.indexOf('/galleries/') >= 0 -%}
-      · Gallery
-      {%- else -%}
-      · Post
-      {%- endif -%}
+      {%- if item.data.type == 'gallery' %} · Gallery{%- else %} · Post{%- endif -%}
     </time>
     
     <h2 class="timeline-title">
       <a href="{{ item.url }}">{{ item.data.title }}</a>
     </h2>
     
-    {%- if item.data.excerpt -%}
+    {%- if item.data.type == 'gallery' -%}
+    <p class="timeline-excerpt">{{ item.data.imageCount }} image{%- if item.data.imageCount != 1 -%}s{%- endif -%}{%- if item.data.description %} · {{ item.data.description }}{%- endif -%}</p>
+    {%- elif item.data.excerpt -%}
     <p class="timeline-excerpt">{{ item.data.excerpt }}</p>
     {%- elif item.data.description -%}
     <p class="timeline-excerpt">{{ item.data.description }}</p>
