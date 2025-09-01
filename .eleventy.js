@@ -47,7 +47,14 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("tagList", function(collection) {
     let tagSet = new Set();
     collection.getAll().forEach(item => {
-      (item.data.tags || []).forEach(tag => tagSet.add(tag));
+      // Ensure tags is always an array
+      let tags = item.data.tags;
+      if (typeof tags === 'string') {
+        tags = [tags];
+      } else if (!Array.isArray(tags)) {
+        tags = [];
+      }
+      tags.forEach(tag => tagSet.add(tag));
     });
     return [...tagSet];
   });

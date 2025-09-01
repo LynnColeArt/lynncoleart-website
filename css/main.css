@@ -707,3 +707,36 @@ code:not(pre code) {
     grid-template-columns: 1fr;
   }
 }
+
+/* Gallery enhancement styles */
+.gallery-grid img {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-grid img.loaded,
+.gallery-grid img[src] {
+  opacity: 1;
+}
+
+.gallery-preview-item {
+  aspect-ratio: 1;
+}
+
+.gallery-preview-item.preview-main {
+  aspect-ratio: auto;
+}
+
+/* Loading states */
+.gallery-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.gallery-error {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 2rem;
+}

@@ -1,0 +1,234 @@
+---
+layout: base.njk
+---
+
+<div class="gallery-single">
+  <header class="gallery-single-header">
+    <a href="/galleries/" class="back-link">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      Back to Galleries
+    </a>
+    <h1 class="gallery-single-title">{{ title }}</h1>
+    <div class="gallery-single-meta">
+      {%- if date -%}
+      <time datetime="{{ date | htmlDateString }}">{{ date | dateDisplay }}</time>
+      {%- endif -%}
+      <span class="separator">·</span>
+      <span>{{ imageCount }} image{%- if imageCount != 1 -%}s{%- endif -%}</span>
+    </div>
+    {%- if description -%}
+    <p class="gallery-single-description">{{ description }}</p>
+    {%- endif -%}
+    {%- if tags and tags.length > 0 -%}
+    <div class="gallery-single-tags">
+      {%- for tag in tags -%}
+      <a href="/tags/{{ tag | slug }}/" class="tag">#{{ tag }}</a>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </header>
+
+  <div class="gallery-single-content">
+    <div class="embedded-gallery" data-issue="{{ issueNumber }}">
+      <div class="gallery-loading">
+        <div class="loading-spinner"></div>
+        <span>Loading gallery...</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.gallery-single {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.gallery-single-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--cyan-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  transition: all 0.2s ease;
+}
+
+.back-link:hover {
+  color: var(--cyan-secondary);
+  transform: translateX(-4px);
+}
+
+.gallery-single-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--purple-primary) 0%, var(--pink-primary) 50%, var(--cyan-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gallery-single-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.separator {
+  opacity: 0.5;
+}
+
+.gallery-single-description {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto 1.5rem;
+}
+
+.gallery-single-tags {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Enhanced gallery grid for full view */
+.gallery-single-content .loaded-gallery {
+  margin-top: 0;
+}
+
+.gallery-single-content .gallery-title {
+  display: none;
+}
+
+.gallery-single-content .gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-top: 0;
+}
+
+@media (min-width: 768px) {
+  .gallery-single-content .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+.gallery-single-content .gallery-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  cursor: zoom-in;
+  transition: all 0.3s ease;
+  background: var(--bg-tertiary);
+}
+
+.gallery-single-content .gallery-grid img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Enhanced lightbox for gallery view */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.9); }
+  to { transform: scale(1); }
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gallery-single {
+    padding: 1rem;
+  }
+  
+  .gallery-single-header {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .gallery-single-content .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .lightbox-close {
+    top: 1rem;
+    right: 1rem;
+  }
+}
+</style>

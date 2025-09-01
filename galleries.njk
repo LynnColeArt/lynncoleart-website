@@ -7,76 +7,131 @@ eleventyNavigation:
   order: 3
 ---
 
-<h1>Art Galleries</h1>
-
-<div class="gallery-grid">
+<div class="galleries-grid">
   {%- for gallery in galleries | reverse -%}
-  <div class="gallery-card" data-issue="{{ gallery.number }}">
-    <div class="embedded-gallery" data-issue="{{ gallery.number }}">
-      <div class="gallery-loading">Loading gallery...</div>
+  <a href="/gallery/{{ gallery.number }}/" class="gallery-item" data-issue="{{ gallery.number }}">
+    <div class="gallery-thumb" data-issue="{{ gallery.number }}">
+      <div class="gallery-loading">
+        <div class="loading-spinner"></div>
+      </div>
+      <span class="image-count">{{ gallery.imageCount }} image{%- if gallery.imageCount != 1 -%}s{%- endif -%}</span>
     </div>
     <div class="gallery-info">
-      <h2>{{ gallery.title }}</h2>
-      {%- if gallery.date -%}
-      <time datetime="{{ gallery.date | htmlDateString }}">{{ gallery.date | dateDisplay }}</time>
-      {%- endif -%}
-      {%- if gallery.description -%}
-      <p>{{ gallery.description }}</p>
-      {%- endif -%}
-      <p class="gallery-meta">
-        <span>{{ gallery.imageCount }} image{%- if gallery.imageCount != 1 -%}s{%- endif -%}</span>
-        {%- if gallery.tags and gallery.tags.length > 0 -%}
-        · 
-        {%- for tag in gallery.tags -%}
-        <a href="/tags/{{ tag | slug }}/" class="tag">#{{ tag }}</a>
-        {%- endfor -%}
+      <h3 class="gallery-title">{{ gallery.title }}</h3>
+      <div class="gallery-meta">
+        {%- if gallery.date -%}
+        {{ gallery.date | dateDisplay }}
         {%- endif -%}
-      </p>
+      </div>
     </div>
-  </div>
+  </a>
   {%- endfor -%}
 </div>
 
 {%- if galleries.length == 0 -%}
-<p class="empty-state">No galleries yet. Check back soon!</p>
+<div class="empty-state">
+  <p>No galleries yet. Check back soon!</p>
+</div>
 {%- endif -%}
 
 <style>
-.gallery-grid {
+.galleries-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-.gallery-card {
+.gallery-item {
   background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: 0.5rem;
   overflow: hidden;
+  cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
+  display: block;
 }
 
-.gallery-card:hover {
+.gallery-item:hover {
+  border-color: var(--purple-primary);
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+}
+
+.gallery-thumb {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  background: var(--bg-tertiary);
+  overflow: hidden;
+}
+
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: var(--bg-tertiary);
+}
+
+.loading-spinner {
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(139, 92, 246, 0.1);
+  border-top-color: var(--purple-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.image-count {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.85rem;
 }
 
 .gallery-info {
-  padding: 1.5rem;
+  padding: 1rem;
 }
 
-.gallery-info h2 {
+.gallery-title {
+  font-weight: 500;
   margin-bottom: 0.5rem;
+  color: var(--text-primary);
 }
 
 .gallery-meta {
+  font-size: 0.85rem;
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
 }
 
-.embedded-gallery {
-  min-height: 200px;
-  background-color: var(--bg-tertiary);
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .galleries-grid {
+    padding: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
 }
 </style>
