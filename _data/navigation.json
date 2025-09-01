@@ -33,5 +33,12 @@
     "url": "/about/",
     "order": 5,
     "icon": "user"
+  },
+  {
+    "id": "1756747212040",
+    "title": "test",
+    "url": "/test",
+    "icon": "",
+    "order": 6
   }
 ]
