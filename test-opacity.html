@@ -21,29 +21,28 @@
             position: relative;
             overflow: hidden;
             background: #2a2a2a;
-            padding: 2rem;
             margin: 2rem 0;
             border-radius: 8px;
             min-height: 200px;
-            isolation: isolate;
         }
         
-        .timeline-gallery::before {
-            content: '';
+        .timeline-gallery-bg {
             position: absolute;
-            inset: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-image: inherit;
             opacity: 0.11;
-            z-index: -1;
-            pointer-events: none;
+            z-index: 0;
         }
         
-        .timeline-gallery > * {
+        .timeline-gallery-content {
             position: relative;
             z-index: 1;
+            padding: 2rem;
         }
         
         .info {
@@ -63,24 +62,30 @@
             <p>If working correctly, you should see a very faint (11% opacity) background image behind the content.</p>
         </div>
         
-        <div class="timeline-gallery" style="background-image: url('https://raw.githubusercontent.com/LynnColeArt/lynncoleart-website/main/images/galleries/gallery-11-1756713456420-Illustration2.jpg');">
-            <h2>Gallery Item with Background</h2>
-            <p>This is a test gallery item. The background image should be visible at 11% opacity.</p>
-            <p>The text should be fully opaque and readable.</p>
+        <div class="timeline-gallery">
+            <div class="timeline-gallery-bg" style="background-image: url('https://raw.githubusercontent.com/LynnColeArt/lynncoleart-website/main/images/galleries/gallery-11-1756713456420-Illustration2.jpg');"></div>
+            <div class="timeline-gallery-content">
+                <h2>Gallery Item with Background</h2>
+                <p>This is a test gallery item. The background image should be visible at 11% opacity.</p>
+                <p>The text should be fully opaque and readable.</p>
+            </div>
         </div>
         
-        <div class="timeline-gallery" style="background-image: url('https://raw.githubusercontent.com/LynnColeArt/lynncoleart-website/main/images/galleries/gallery-12-1756713643469-document3.jpg');">
-            <h2>Another Gallery Item</h2>
-            <p>This uses a different background image, also at 11% opacity.</p>
+        <div class="timeline-gallery">
+            <div class="timeline-gallery-bg" style="background-image: url('https://raw.githubusercontent.com/LynnColeArt/lynncoleart-website/main/images/galleries/gallery-12-1756713643469-document3.jpg');"></div>
+            <div class="timeline-gallery-content">
+                <h2>Another Gallery Item</h2>
+                <p>This uses a different background image, also at 11% opacity.</p>
+            </div>
         </div>
         
         <div class="info">
-            <h3>How it works:</h3>
+            <h3>How it works (old school method):</h3>
             <ul>
-                <li>The background-image is set on the main element</li>
-                <li>A ::after pseudo-element inherits this background-image</li>
-                <li>The ::after element has opacity: 0.11</li>
-                <li>All content has z-index: 1 to appear above the background</li>
+                <li>Separate div for background with its own opacity</li>
+                <li>Background div is positioned absolutely</li>
+                <li>Content div is positioned relatively with higher z-index</li>
+                <li>No inheritance issues, no pseudo-element complications</li>
             </ul>
         </div>
     </div>

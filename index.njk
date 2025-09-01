@@ -38,8 +38,12 @@ description: Latest posts and galleries from the Mad Scientist of AI
   
   {%- for item in sortedItems -%}
   {%- if not item.data.draft -%}
-  <article class="timeline-item{%- if item.data.type == 'gallery' %} timeline-gallery{%- endif -%}"
-          {%- if item.data.type == 'gallery' and item.data.firstImage %} style="background-image: url('{{ item.data.firstImage }}');"{% endif -%}>
+  <article class="timeline-item{%- if item.data.type == 'gallery' %} timeline-gallery{%- endif -%}">
+    {%- if item.data.type == 'gallery' and item.data.firstImage -%}
+    <div class="timeline-gallery-bg" style="background-image: url('{{ item.data.firstImage }}');"></div>
+    <div class="timeline-gallery-content">
+    {%- endif -%}
+    
     <time class="timeline-meta" datetime="{{ item.date | htmlDateString }}">
       {{ item.date | dateDisplay }}
       {%- if item.data.type == 'gallery' %} · Gallery{%- else %} · Post{%- endif -%}
@@ -62,6 +66,10 @@ description: Latest posts and galleries from the Mad Scientist of AI
       {%- for tag in item.data.tags -%}
       <a href="/tags/{{ tag | slug }}/" class="tag">#{{ tag }}</a>
       {%- endfor -%}
+    </div>
+    {%- endif -%}
+    
+    {%- if item.data.type == 'gallery' and item.data.firstImage -%}
     </div>
     {%- endif -%}
   </article>
