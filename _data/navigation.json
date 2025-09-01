@@ -7,31 +7,10 @@
     "icon": "home"
   },
   {
-    "id": "blog",
-    "title": "Blog",
-    "url": "/blog/",
-    "order": 2,
-    "icon": "file-text"
-  },
-  {
-    "id": "galleries",
-    "title": "Pretty Pictures",
-    "url": "/galleries/",
-    "order": 3,
-    "icon": "image"
-  },
-  {
-    "id": "projects",
-    "title": "Projects",
-    "url": "/projects/",
-    "order": 4,
-    "icon": "code"
-  },
-  {
     "id": "about",
     "title": "About",
     "url": "/about/",
-    "order": 5,
+    "order": 2,
     "icon": "user"
   },
   {
@@ -39,6 +18,27 @@
     "title": "Where to Find Lynn",
     "url": "/findme",
     "icon": "",
-    "order": 6
+    "order": 3
+  },
+  {
+    "id": "galleries",
+    "title": "Pretty Pictures",
+    "url": "/galleries/",
+    "order": 4,
+    "icon": "image"
+  },
+  {
+    "id": "projects",
+    "title": "Projects",
+    "url": "/projects/",
+    "order": 5,
+    "icon": "code"
+  },
+  {
+    "id": "blog",
+    "title": "Blog",
+    "url": "/blog/",
+    "order": 6,
+    "icon": "file-text"
   }
 ]
