@@ -1,7 +1,7 @@
 [
   {
     "id": "home",
-    "title": "Timeline",
+    "title": "Home",
     "url": "/",
     "order": 1,
     "icon": "home"
