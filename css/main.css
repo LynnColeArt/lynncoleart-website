@@ -251,22 +251,23 @@ a:hover {
 /* Gallery timeline items with subtle background */
 .timeline-gallery {
   position: relative;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
-.timeline-gallery::before {
+.timeline-gallery::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--bg-secondary);
-  opacity: 0.89; /* This makes the image show at 11% opacity */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: inherit;
+  opacity: 0.11;
   z-index: 0;
-  border-radius: 0.5rem;
+  pointer-events: none;
 }
 
 .timeline-gallery > * {
