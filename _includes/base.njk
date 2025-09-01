@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} | Lynn Cole Art</title>
-    <meta name="description" content="{{ description or 'Mad Scientist of AI - Art, Code, and Digital Experiments' }}">
+    <title>{{ title }} | {{ site.name }}</title>
+    <meta name="description" content="{{ description or site.title + ' - ' + site.description }}">
     
     <!-- Open Graph -->
     <meta property="og:title" content="{{ title }}">
@@ -13,7 +13,7 @@
     <meta property="og:url" content="https://lynncole.art{{ page.url }}">
     
     <!-- RSS -->
-    <link rel="alternate" type="application/rss+xml" title="Lynn Cole Art RSS Feed" href="/feed.xml">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} RSS Feed" href="/feed.xml">
     
     <!-- Styles -->
     <link rel="stylesheet" href="/css/main.css">
@@ -28,9 +28,9 @@
     {
         "@context": "https://schema.org",
         "@type": "Person",
-        "name": "Lynn Cole",
-        "description": "Mad Scientist of AI - Artist and Developer",
-        "url": "https://lynncole.art",
+        "name": "{{ site.author.name }}",
+        "description": "{{ site.title }} - Artist and Developer",
+        "url": "{{ site.url }}",
         "sameAs": [
             "https://github.com/LynnColeArt"
         ]
@@ -41,8 +41,9 @@
     <div class="site-wrapper">
         <nav class="sidebar" aria-label="Main navigation">
             <div class="site-header">
-                <h1><a href="/">Lynn Cole Art</a></h1>
-                <p class="tagline">Mad Scientist of AI</p>
+                <h1><a href="/">{{ site.name }}</a></h1>
+                <p class="tagline">{{ site.title }}</p>
+                <p class="site-description">{{ site.description }}</p>
             </div>
             
             <ul class="nav-list">
