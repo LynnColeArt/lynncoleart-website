@@ -15,7 +15,7 @@
   },
   {
     "id": "galleries",
-    "title": "Galleries",
+    "title": "Pretty Pictures",
     "url": "/galleries/",
     "order": 3,
     "icon": "image"
@@ -36,8 +36,8 @@
   },
   {
     "id": "1756747212040",
-    "title": "test",
-    "url": "/test",
+    "title": "Where to Find Lynn",
+    "url": "/findme",
     "icon": "",
     "order": 6
   }
