@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opacity Test</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: white;
+            padding: 2rem;
+            font-family: sans-serif;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline-gallery {
+            position: relative;
+            overflow: hidden;
+            background: #2a2a2a;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            min-height: 200px;
+        }
+        
+        .timeline-gallery::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-image: inherit;
+            opacity: 0.11;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .timeline-gallery > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .info {
+            background: #333;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>CSS Opacity Test</h1>
+        
+        <div class="info">
+            <p>This page tests the opacity effect for gallery backgrounds.</p>
+            <p>If working correctly, you should see a very faint (11% opacity) background image behind the content.</p>
+        </div>
+        
+        <div class="timeline-gallery" style="background-image: url('https://raw.githubusercontent.com/LynnColeArt/lynncoleart-website/main/images/galleries/gallery-11-1756713456420-Illustration2.jpg');">
+            <h2>Gallery Item with Background</h2>
+            <p>This is a test gallery item. The background image should be visible at 11% opacity.</p>
+            <p>The text should be fully opaque and readable.</p>
+        </div>
+        
+        <div class="timeline-gallery" style="background-image: url('https://raw.githubusercontent.com/LynnColeArt/lynncoleart-website/main/images/galleries/gallery-12-1756713643469-document3.jpg');">
+            <h2>Another Gallery Item</h2>
+            <p>This uses a different background image, also at 11% opacity.</p>
+        </div>
+        
+        <div class="info">
+            <h3>How it works:</h3>
+            <ul>
+                <li>The background-image is set on the main element</li>
+                <li>A ::after pseudo-element inherits this background-image</li>
+                <li>The ::after element has opacity: 0.11</li>
+                <li>All content has z-index: 1 to appear above the background</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
