@@ -99,6 +99,21 @@ module.exports = function(eleventyConfig) {
     return [...new Set(array)];
   });
   
+  eleventyConfig.addFilter("sortByPopularity", (repos) => {
+    return repos.sort((a, b) => {
+      const popularityA = (a.stars || 0) + (a.forks || 0);
+      const popularityB = (b.stars || 0) + (b.forks || 0);
+      
+      // Sort by popularity descending
+      if (popularityB !== popularityA) {
+        return popularityB - popularityA;
+      }
+      
+      // If same popularity, sort alphabetically
+      return a.name.localeCompare(b.name);
+    });
+  });
+  
   eleventyConfig.addFilter("map", (array, prop) => {
     return array.map(item => item[prop]);
   });

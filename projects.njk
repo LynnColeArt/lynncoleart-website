@@ -35,27 +35,12 @@ eleventyNavigation:
     {%- endfor -%}
   </div>
   
-  {%- set pinnedProjects = [] -%}
-  {%- set otherProjects = [] -%}
-  
-  {%- for repo in github.repos -%}
-    {%- if repo.name in pinnedRepos -%}
-      {%- set pinnedProjects = (pinnedProjects.push(repo), pinnedProjects) -%}
-    {%- else -%}
-      {%- set otherProjects = (otherProjects.push(repo), otherProjects) -%}
-    {%- endif -%}
-  {%- endfor -%}
-  
-  {%- set sortedPinned = pinnedProjects | sort(false, true, 'name') -%}
-  {%- set sortedOthers = otherProjects | sort(false, true, 'name') -%}
-  {%- set allSorted = sortedPinned | concat(sortedOthers) -%}
-  
   <div class="projects-grid">
-    {%- for repo in allSorted -%}
-    <article class="project-card{%- if repo.name in pinnedRepos %} pinned{%- endif -%}" data-language="{{ repo.language }}">
+    {%- for repo in github.repos | sortByPopularity -%}
+    <article class="project-card{%- if repo.stars > 0 or repo.forks > 0 %} popular{%- endif -%}" data-language="{{ repo.language }}">
       <div class="project-header">
         <h3>
-          {%- if repo.name in pinnedRepos -%}📌 {%- endif -%}
+          {%- if repo.stars >= 10 -%}⭐ {%- endif -%}
           <a href="{{ repo.url }}" target="_blank" rel="noopener">{{ repo.name }}</a>
         </h3>
         {%- if repo.homepage -%}
