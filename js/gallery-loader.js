@@ -10,10 +10,12 @@
   // Load all gallery thumbnails on the page
   async function loadGalleryThumbnails() {
     const thumbs = document.querySelectorAll('.gallery-thumb[data-issue]');
+    console.log(`Found ${thumbs.length} gallery thumbnails to load`);
     
     for (const thumb of thumbs) {
       const issueNumber = thumb.dataset.issue;
       if (issueNumber) {
+        console.log(`Loading thumbnail for gallery ${issueNumber}`);
         await loadGalleryThumbnail(thumb, issueNumber);
       }
     }
@@ -36,6 +38,12 @@
     try {
       // Fetch comments (images)
       const commentsResponse = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues/${issueNumber}/comments`);
+      
+      if (!commentsResponse.ok) {
+        console.error(`Gallery ${issueNumber}: HTTP ${commentsResponse.status} ${commentsResponse.statusText}`);
+        throw new Error(`HTTP ${commentsResponse.status}`);
+      }
+      
       const comments = await commentsResponse.json();
       
       // Extract first image
@@ -61,6 +69,12 @@
     try {
       // Fetch issue data
       const issueResponse = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues/${issueNumber}`);
+      
+      if (!issueResponse.ok) {
+        console.error(`Gallery ${issueNumber} issue: HTTP ${issueResponse.status} ${issueResponse.statusText}`);
+        throw new Error(`HTTP ${issueResponse.status}`);
+      }
+      
       const issue = await issueResponse.json();
       
       // Parse metadata
@@ -68,6 +82,12 @@
       
       // Fetch comments (images)
       const commentsResponse = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues/${issueNumber}/comments`);
+      
+      if (!commentsResponse.ok) {
+        console.error(`Gallery ${issueNumber} comments: HTTP ${commentsResponse.status} ${commentsResponse.statusText}`);
+        throw new Error(`HTTP ${commentsResponse.status}`);
+      }
+      
       const comments = await commentsResponse.json();
       
       // Extract images
