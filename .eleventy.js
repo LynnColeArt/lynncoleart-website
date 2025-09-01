@@ -122,6 +122,9 @@ module.exports = function(eleventyConfig) {
     if (test === 'falsy') {
       return array.filter(Boolean);
     }
+    if (typeof test === 'string') {
+      return array.filter(item => !item[test]);
+    }
     return array.filter(item => !item);
   });
   

@@ -75,7 +75,10 @@ module.exports = async function() {
             images: images, // Include all images
             url: `/gallery/${issue.number}/`, // URL for individual gallery page
             created: issue.created_at,
-            updated: issue.updated_at
+            updated: issue.updated_at,
+            hidden: metadata.hidden || false, // Completely hidden
+            hideFromHomepage: metadata.hideFromHomepage || false, // Hidden from homepage only
+            private: metadata.private || false // Private (could be used for future access control)
           };
         })
     );
@@ -111,6 +114,8 @@ function parseIssueMetadata(body) {
         }
       } else if (key === 'imageCount') {
         metadata[key] = parseInt(value) || 0;
+      } else if (key === 'hidden' || key === 'hideFromHomepage' || key === 'private') {
+        metadata[key] = value.toLowerCase() === 'true';
       } else {
         metadata[key] = value;
       }

@@ -17,20 +17,22 @@ description: Latest posts and galleries from the Mad Scientist of AI
   
   {# Add galleries to timeline #}
   {%- for gallery in galleries -%}
-    {%- set galleryItem = {
-      date: gallery.date,
-      url: '/gallery/' + gallery.number + '/',
-      data: {
-        title: gallery.title,
-        description: gallery.description,
-        tags: gallery.tags,
-        type: 'gallery',
-        imageCount: gallery.imageCount,
-        firstImage: gallery.firstImage,
-        issueNumber: gallery.number
-      }
-    } -%}
-    {%- set allItems = (allItems.push(galleryItem), allItems) -%}
+    {%- if not gallery.hidden and not gallery.hideFromHomepage -%}
+      {%- set galleryItem = {
+        date: gallery.date,
+        url: '/gallery/' + gallery.number + '/',
+        data: {
+          title: gallery.title,
+          description: gallery.description,
+          tags: gallery.tags,
+          type: 'gallery',
+          imageCount: gallery.imageCount,
+          firstImage: gallery.firstImage,
+          issueNumber: gallery.number
+        }
+      } -%}
+      {%- set allItems = (allItems.push(galleryItem), allItems) -%}
+    {%- endif -%}
   {%- endfor -%}
   
   {# Sort by date and limit to 20 most recent #}

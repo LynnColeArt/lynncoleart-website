@@ -9,6 +9,7 @@ eleventyNavigation:
 
 <div class="galleries-grid">
   {%- for gallery in galleries | reverse -%}
+  {%- if not gallery.hidden -%}
   <a href="/gallery/{{ gallery.number }}/" class="gallery-item" data-issue="{{ gallery.number }}">
     <div class="gallery-thumb">
       {%- if gallery.firstImage -%}
@@ -27,10 +28,12 @@ eleventyNavigation:
       </div>
     </div>
   </a>
+  {%- endif -%}
   {%- endfor -%}
 </div>
 
-{%- if galleries.length == 0 -%}
+{%- set visibleGalleries = galleries | reject('hidden') -%}
+{%- if visibleGalleries.length == 0 -%}
 <div class="empty-state">
   <p>No galleries yet. Check back soon!</p>
 </div>
