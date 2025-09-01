@@ -1,5 +1,5 @@
 ---
-layout: post.njk
+layout: modular-post.njk
 title: test
 date: '2025-09-01T02:04:00.000Z'
 tags:
@@ -10,7 +10,7 @@ blocks:
   - id: '1756708378981'
     type: text
     content: test
-  - id: 'https://www.youtube.com/watch?v=o2Uzv1KtLkQ'
+  - id: 'o2Uzv1KtLkQ'
     type: video
     platform: youtube
     autoplay: false
