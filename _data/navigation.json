@@ -14,18 +14,18 @@
     "icon": "user"
   },
   {
-    "id": "blog",
-    "title": "Blog",
-    "url": "/blog/",
-    "order": 3,
-    "icon": "file-text"
-  },
-  {
     "id": "projects",
     "title": "Github Projects",
     "url": "/projects/",
-    "order": 4,
+    "order": 3,
     "icon": "code"
+  },
+  {
+    "id": "blog",
+    "title": "Blog",
+    "url": "/blog/",
+    "order": 4,
+    "icon": "file-text"
   },
   {
     "id": "galleries",
