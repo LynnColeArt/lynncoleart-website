@@ -1,0 +1,176 @@
+---
+layout: base.njk
+---
+
+<article class="page modular-page">
+  <header class="page-header">
+    <h1>{{ title }}</h1>
+  </header>
+  
+  <div class="page-content modular-content">
+    {% for block in blocks %}
+      {% if block.type == "text" %}
+      <div class="content-block text-block">
+        {{ block.content | markdown | safe }}
+      </div>
+      
+      {% elif block.type == "image" %}
+      <div class="content-block image-block">
+        <img src="{{ block.url }}" alt="{{ block.alt }}" loading="lazy">
+      </div>
+      
+      {% elif block.type == "gallery" %}
+      <div class="content-block gallery-block">
+        {% if block.source == "issue" and block.issueNumber %}
+        <div class="embedded-gallery" data-issue="{{ block.issueNumber }}">
+          <div class="gallery-loading">Loading gallery #{{ block.issueNumber }}...</div>
+        </div>
+        {% else %}
+        <div class="gallery-grid">
+          {% for image in block.images %}
+          <img src="{{ image }}" alt="Gallery image" loading="lazy">
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      
+      {% elif block.type == "video" %}
+      <div class="content-block video-block">
+        {% if block.platform == "youtube" %}
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/{{ block.videoId }}" 
+                  title="YouTube video player" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen>
+          </iframe>
+        </div>
+        {% elif block.platform == "vimeo" %}
+        <div class="video-wrapper">
+          <iframe src="https://player.vimeo.com/video/{{ block.videoId }}" 
+                  frameborder="0" 
+                  allow="autoplay; fullscreen; picture-in-picture" 
+                  allowfullscreen>
+          </iframe>
+        </div>
+        {% endif %}
+      </div>
+      
+      {% elif block.type == "code" %}
+      <div class="content-block code-block">
+        <pre><code class="language-{{ block.language }}">{{ block.code }}</code></pre>
+      </div>
+      
+      {% elif block.type == "quote" %}
+      <div class="content-block quote-block">
+        <blockquote>
+          {{ block.content | markdown | safe }}
+          {% if block.author %}
+          <cite>— {{ block.author }}</cite>
+          {% endif %}
+        </blockquote>
+      </div>
+      
+      {% elif block.type == "suno" %}
+      <div class="content-block suno-block">
+        <iframe 
+          src="https://suno.com/embed/{{ block.sunoId }}" 
+          width="100%" 
+          height="240" 
+          frameborder="0" 
+          allow="autoplay">
+        </iframe>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</article>
+
+<style>
+.page-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.page-content {
+  max-width: 65ch;
+}
+
+.modular-content .content-block {
+  margin-bottom: 2rem;
+}
+
+.modular-content .text-block img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.modular-content .image-block img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.modular-content .quote-block blockquote {
+  border-left: 4px solid var(--purple-primary);
+  padding-left: 1rem;
+  margin: 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.modular-content .quote-block cite {
+  display: block;
+  text-align: right;
+  margin-top: 1rem;
+  font-style: normal;
+  color: var(--text-secondary);
+}
+
+.modular-content .video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.modular-content .video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modular-content .gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.modular-content .gallery-grid img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.modular-content .gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
+.modular-content .embedded-gallery {
+  margin: 2rem 0;
+}
+
+.modular-content .suno-block iframe {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+</style>
