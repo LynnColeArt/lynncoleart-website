@@ -28,9 +28,12 @@ Presently, I'm located in the United States.
 With the current state of the world, I don't expect this to be the case forever. At the time of this writing the political system in the US has been destabalized, and it's not a safe place for women, ethnic or social minorities to live or work. I'm trying to figure out a way to leave.
 
 
-## The Experiments
+## What do I do?
 
-I explore the bleeding edge of artificial intelligence and digital art:
+I am an engineer and an artist. The line between the two of them is vague, but it is there. Art is something you create to present a feeling, thought or opinion. Engineering is the same process, but applied to functional systems. It's the difference between painting an manifestos. My medium is code, and AI.
+
+
+
 
 - **AI Art Generation** - Pushing the boundaries of what's possible with generative AI
 - **Creative Coding** - Building tools and experiments that blur the line between art and technology
