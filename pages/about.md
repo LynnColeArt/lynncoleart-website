@@ -25,7 +25,7 @@ This is my open invitation.
 
 Welcome.
 
-Presently, I'm located in the United States.
+Presently, I'm located somewhere on earth, but this might change at some point, due to political volitility.
 
 ## Two Truths and A Lie
 
