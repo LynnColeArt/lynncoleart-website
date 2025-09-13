@@ -9,11 +9,13 @@ permalink: /about/
 I don't think I ever quite know what to say about myself in these pages?
 What am I exactly?
 
-Am I an artist? An engineer? A troublemaker for anyone with an intrenched sense of authority?
+Am I an artist? An engineer? A troublemaker for anyone with an smug sense of authority?
 
 Yes. That's accurate.
 
-Although, I don't suppose who I am is really all that important in the long run. Most people are forgotten. Notariety is fleeting, and actually being both alive and famous isn't a desirable outcome -- so it's not the set of parameters I optimize for. 
+Pleased to meet you. I am the High Priestess of Dada.
+
+I don't suppose who I am is really all that important. Most people are forgotten. Notariety is fleeting, and actually being both alive and well known isn't a desirable outcome -- so it's not the set of parameters I optimize for. 
 
 Rather, my thinking for the last few years is that I would rather be subtly influential. Make a dent in the way people and machines approach problems, and subtly guide the needle in a direction that I hope will make the world a more tolerable place for everyone. 
 
