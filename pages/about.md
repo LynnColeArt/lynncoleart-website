@@ -25,7 +25,7 @@ This is my open invitation.
 
 Welcome.
 
-Presently, I'm located somewhere on earth, but this might change at some point, due to political volitility.
+Presently, I'm located somewhere on The Planet Earth, but this might change at some point, due to political volitility.
 
 ## Two Truths and A Lie
 
