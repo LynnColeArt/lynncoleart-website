@@ -25,11 +25,21 @@ Welcome.
 
 Presently, I'm located in the United States.
 
-With the current state of the world, I don't expect this to be the case forever. At the time of this writing the political system in the US has been destabalized, and it's not a safe place for women, ethnic, or social minorities to live or work. I'm trying to figure out a way to leave.
+## Two Truths and A Lie
+
+Everything you've heard is true!
+
+* Indeed. I was in fact raised by a group of anarchist clowns in Colorado, after escaping the roving phone book salesmen that kidnapped me as a child, and forced me to work at McDonalds.
+
+* Yes. I have been in and out of different art scenes in different places, with different names, for different reasons at different times.
+
+* Yes. I have been a professional engineer for 30 years.
 
 ## What do I do?
 
-I am an engineer and an artist. The line between the two is vague, but it is there. Art is something you create to present a feeling, thought or opinion. Engineering is the same process, but applied to functional systems. It's the difference between painting an manifestos. 
+I am an engineer and an artist. Professionally, I build agent systems, that I hope will replace all jobs, and force us to reconsider the discussion on labor. I'm doing this with novel processes, memory systems, and elbow grease. 
+
+The line between art and engineering is vague, but it is there. Art is something you create to present a feeling, thought or opinion. Engineering is the same process, but applied to functional systems. It's the difference between painting an manifestos. 
 
 My medium is code, and AI. I function experimentally. Starting from first principles, with just enough knowledge on any topic to be dangerous. Then I pull at the seams of reality until the threads come loose, and I get to challenge my assumptions. The result is code, or art that tests novel ideas, rethinks the foundations everyone assumes are a given, and it's a way to showcase both my stance on key technical or artistic issues, as well as my vision for what things could or should be.
 
