@@ -1,37 +1,44 @@
 [
   {
     "id": "home",
-    "title": "Timeline",
+    "title": "Home",
     "url": "/",
     "order": 1,
     "icon": "home"
   },
   {
+    "id": "about",
+    "title": "About",
+    "url": "/about/",
+    "order": 2,
+    "icon": "user"
+  },
+  {
+    "id": "projects",
+    "title": "Github Projects",
+    "url": "/projects/",
+    "order": 3,
+    "icon": "code"
+  },
+  {
     "id": "blog",
     "title": "Blog",
     "url": "/blog/",
-    "order": 2,
+    "order": 4,
     "icon": "file-text"
   },
   {
     "id": "galleries",
-    "title": "Galleries",
+    "title": "Pretty Pictures",
     "url": "/galleries/",
-    "order": 3,
+    "order": 5,
     "icon": "image"
   },
   {
-    "id": "projects",
-    "title": "Projects",
-    "url": "/projects/",
-    "order": 4,
-    "icon": "code"
-  },
-  {
-    "id": "about",
-    "title": "About",
-    "url": "/about/",
-    "order": 5,
-    "icon": "user"
+    "id": "1756747212040",
+    "title": "Where to Find Lynn",
+    "url": "/findme",
+    "icon": "",
+    "order": 6
   }
 ]
