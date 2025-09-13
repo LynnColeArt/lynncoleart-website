@@ -1,16 +1,17 @@
 ---
 layout: modular-post.njk
-title: 'ai, prompting, ai art, stable diffusion, comics'
+title: 'On Prompting, Automated Prompting, Creative Processes, and The Soul of Art'
 date: '2024-10-18T12:01:00.000Z'
 tags:
-  - On Prompting
-  - Automated Prompting
-  - Creative Processes
-  - and The Soul of Art
+  - ai
+  - prompting
+  - ai art
+  - stable diffusion
+  - comics
 excerpt: ''
 draft: false
 blocks:
-  - id: '1757790021768'
+  - id: '1757790133356'
     type: text
     content: >2-
        I've developed a new more interactive process for proompting, and it has me asking questions about what all of this means. 
