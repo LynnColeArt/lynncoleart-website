@@ -25,26 +25,14 @@ Welcome.
 
 Presently, I'm located in the United States.
 
-With the current state of the world, I don't expect this to be the case forever. At the time of this writing the political system in the US has been destabalized, and it's not a safe place for women, ethnic or social minorities to live or work. I'm trying to figure out a way to leave.
-
+With the current state of the world, I don't expect this to be the case forever. At the time of this writing the political system in the US has been destabalized, and it's not a safe place for women, ethnic, or social minorities to live or work. I'm trying to figure out a way to leave.
 
 ## What do I do?
 
-I am an engineer and an artist. The line between the two of them is vague, but it is there. Art is something you create to present a feeling, thought or opinion. Engineering is the same process, but applied to functional systems. It's the difference between painting an manifestos. My medium is code, and AI.
+I am an engineer and an artist. The line between the two is vague, but it is there. Art is something you create to present a feeling, thought or opinion. Engineering is the same process, but applied to functional systems. It's the difference between painting an manifestos. 
 
+My medium is code, and AI. I function experimentally. Starting from first principles, with just enough knowledge on any topic to be dangerous. Then I pull at the seams of reality until the threads come loose, and I get to challenge my assumptions. The result is code, or art that tests novel ideas, rethinks the foundations everyone assumes are a given, and it's a way to showcase both my stance on key technical or artistic issues, as well as my vision for what things could or should be.
 
+Sometimes, the result is incredible. But you will see a lot of half finished projects here.
 
-
-- **AI Art Generation** - Pushing the boundaries of what's possible with generative AI
-- **Creative Coding** - Building tools and experiments that blur the line between art and technology
-- **Digital Experiments** - Testing new ideas at the intersection of creativity and computation
-
-## My Philosophy
-
-In this age of artificial intelligence, we're not just creating art—we're collaborating with machines to discover new forms of beauty and expression. Every prompt is an experiment, every output a discovery.
-
-## Connect
-
-Follow my experiments and join the conversation about the future of creative AI.
-
-*"In the digital laboratory, every pixel is a possibility."*
+Don't worry. I will either finish or iterate on all of them eventually.
