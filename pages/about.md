@@ -1,6 +1,6 @@
 ---
 layout: page.njk
-title: About
+title: About Lynn Cole
 permalink: /about/
 ---
 
@@ -25,7 +25,7 @@ Welcome.
 
 Presently, I'm located in the United States.
 
-With the current state of the world, I don't expect this to be the case forever. 
+With the current state of the world, I don't expect this to be the case forever. At the time of this writing the political system in the US has been destabalized, and it's not a safe place for women, ethnic or social minorities to live or work. I'm trying to figure out a way to leave.
 
 
 ## The Experiments
