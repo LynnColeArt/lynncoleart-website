@@ -16,9 +16,9 @@ module.exports = async function() {
       headers['Authorization'] = `token ${GITHUB_TOKEN}`;
     }
     
-    // Fetch issues labeled as 'media'
+    // Fetch issues labeled as 'media' - only open issues
     const response = await fetch(
-      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues?labels=media&state=all&per_page=100`,
+      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues?labels=media&state=open&per_page=100`,
       { headers }
     );
     
