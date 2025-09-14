@@ -3,7 +3,7 @@ layout: modular-page.njk
 title: My Little Footprints Across The Internet
 permalink: /findme/
 blocks:
-  - id: '1757882594229'
+  - id: '1757883369321'
     type: text
     content: >
       You know what you need in your life at **this very moment**?
@@ -54,13 +54,11 @@ blocks:
       **Social Media:**
 
 
-      * [Kofi Store](https://ko-fi.com/lynncole) (including art
-      books)[](https://ko-fi.com/lynncole)
+      * [Bluesky](https://bsky.app/profile/priestessofdada.bsky.social)
 
-      * X/[Twitter](https://twitter.com/PriestessOfDada) (where I spend the most
-      time)
+      * [Kofi Store](https://ko-fi.com/lynncole) (including art books)
 
-      * [Insta](https://www.instagram.com/actualartlynn/)
+      * [Insta](https://www.instagram.com/priestessofdada/)
 
       * [Youtube](https://www.youtube.com/@Lynncorrigible) (main channel)
 
