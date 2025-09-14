@@ -10,7 +10,7 @@ layout: base.njk
       </svg>
       Back to Galleries
     </a>
-    <h1 class="gallery-single-title">{{ title }}</h1>
+    <h1 class="gallery-single-title">{{ title | safe }}</h1>
     <div class="gallery-single-meta">
       {%- if date -%}
       <time datetime="{{ date | htmlDateString }}">{{ date | dateDisplay }}</time>
@@ -19,11 +19,11 @@ layout: base.njk
       <span>{{ imageCount }} image{%- if imageCount != 1 -%}s{%- endif -%}</span>
     </div>
     {%- if description -%}
-    <p class="gallery-single-description">{{ description }}</p>
+    <p class="gallery-single-description">{{ description | safe }}</p>
     {%- endif -%}
-    {%- if tags and tags.length > 0 -%}
+    {%- if gallery.tags and gallery.tags.length > 0 -%}
     <div class="gallery-single-tags">
-      {%- for tag in tags -%}
+      {%- for tag in gallery.tags -%}
       <a href="/tags/{{ tag | slug }}/" class="tag">#{{ tag }}</a>
       {%- endfor -%}
     </div>
