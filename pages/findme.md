@@ -3,13 +3,15 @@ layout: modular-page.njk
 title: My Little Footprints Across The Internet
 permalink: /findme/
 blocks:
-  - id: '1756757063968'
+  - id: '1757883740003'
     type: text
     content: >
       You know what you need in your life at **this very moment**?
 
 
-      More links related to me, and the things I've made because I am perfect and adorable and you love reading about me. I got a secret, I love you too.
+      More links related to me, and the things I've made because I am perfect
+      and adorable and you love reading about me. I got a secret, I love you
+      too.
 
 
       **Business email:** [LynncoleArt@Gmail.com](mailto:lynncoleart@gmail.com)
@@ -17,42 +19,114 @@ blocks:
 
       ## Current Fascinations
 
-      - [Music Channel](https://www.youtube.com/@LynnColeMusic)
 
-      - [Spotify](https://open.spotify.com/artist/7iyCJSbyVgT96xKMgSny7R)
+      * [Music Channel](https://www.youtube.com/@LynnColeMusic) \- Where I post
+      my songs and lyric videos.
 
-      - [Bandcamp](https://lynncole.bandcamp.com/)
+      * [Spotify](https://open.spotify.com/artist/7iyCJSbyVgT96xKMgSny7R) \-
+      Another place to find my music.
 
-      - [Soundcloud](https://soundcloud.com/lynncolemusic)
+      * [Bandcamp](https://lynncole.bandcamp.com/) \- My presently infrequently
+      updated Bandcamp profile
 
-      - [Apple Music](https://music.apple.com/us/artist/lynn-cole/1726450520)
+      * [Soundcloud](https://soundcloud.com/lynncolemusic) \- Want to explore my
+      musical journey from the begging, good bad and very bad? This is the place
 
-      - [Udio](https://www.udio.com/creators/Lynn%20Cole)
+      * [Apple Music](https://music.apple.com/us/artist/lynn-cole/1726450520) \-
+      Another place to buy my music and support experimental art.
 
-      - [Suno](https://suno.com/@priestessofdada)
+      * [Udio](https://www.udio.com/creators/Lynn%20Cole) \- I use Udio for
+      mastering, mixing and compositions
 
-      - [Experimental Art Channel](https://www.youtube.com/@PriestessOfDada)
+      * [Suno](https://suno.com/@priestessofdada) \- Where the project music
+      started. I love suno. It's such a great machine. I still use it for
+      prototyping and testing
 
-      - [Archive.org](https://archive.org/details/lynn-cole-historical-archive-part1)
+      * [Experimental Art Channel](https://www.youtube.com/@PriestessOfDada) \-
+      Where I occasionally post the really weird and experimental stuff, art
+      music, more
+
+      *
+      [Archive.org](https://archive.org/details/lynn-cole-historical-archive-part1)
+      \- Early music archive on archive.org[](https://lynncole.bandcamp.com/)
+
 
 
       ### Social Media
 
-      - [Bluesky](https://bsky.app/profile/priestessofdada.bsky.social)
 
-      - [Kofi Store](https://ko-fi.com/lynncole)
+      * [Bluesky](https://bsky.app/profile/priestessofdada.bsky.social)
 
-      - [Insta](https://www.instagram.com/priestessofdada/)
+      * [Kofi Store](https://ko-fi.com/lynncole) (including art books)
 
-      - [Youtube](https://www.youtube.com/@Lynncorrigible)
+      * [Insta](https://www.instagram.com/priestessofdada/)
 
-      - [Facebook](https://www.facebook.com/LynnFusion)
+      * [Youtube](https://www.youtube.com/@Lynncorrigible) (main channel)
 
-      - [Github](https://github.com/LynnColeArt)
+      * [Facebook](https://www.facebook.com/LynnFusion)
+
+      * [Github](https://github.com/LynnColeArt) (the new account where
+      everything is up to date)
+
 
 
       ### Funky little tools I made:
 
-      - [Material Switcher for CC4/VRM HDRP](https://github.com/LynnColeArt/MaterialSwitcherCC4)
+
+      * [Material Switcher for CC4/VRM HDRP Decoys in
+      Unity](https://github.com/LynnColeArt/MaterialSwitcherCC4Unity)
+
+      * [](https://github.com/LynnColeArt/PerfectSyncForCC4)[CC4 Perfectsync
+      Facial Profile for CC4](https://github.com/LynnColeArt/PerfectSyncForCC4)
+      (It's obsolete, I'm working on a new one)
+
+      * [Blank Arkit Blendhsape Presets for
+      Univrm](https://github.com/LynnColeArt/BlankPresetsForUnivrm)
+
+      * [CC3 Blendshape Renamer for
+      Blender](https://github.com/LynnColeArt/cc3-blendshape-renamer)
+
+
+
+      ### Past Fascinations:**
+
+
+      * [Safe Room](https://holographicgf.bandcamp.com/album/safe-room) \- My
+      4th and most serious pop country album, where I used an AI to sing a bunch
+      of songs I wrote by hand.
+
+      * [The Dada Kidnapper's
+      Manifesto](https://archive.org/details/kidnapper_202401) \- A breakdown on
+      post-aesthetic dadaism and ai. It's brilliant and terrible. Or possibly
+      just terrible. I'm writing a
+      followup[](https://github.com/LynnColeArt/MaterialSwitcherCC4Unity)
+
+      * [Prixiv](https://www.pixiv.net/en/users/76285311)
+
+      * [Mastodon](https://mastodon.art/@lynnspyre)
+
+      * [Project Instagram for Tilde Dawn](https://www.instagram.com/tildedawn/)
+      \- Earlier music project
+
+      * [Youtube](https://www.youtube.com/channel/UCSZCGaH3HK7-YL89v5AqQJw) (Art
+      & Fire, short lived pdocast with my friend, the cutscene artist)
+
+      * [Vroidhub](https://hub.vroid.com/en/users/76285311) (for a good example
+      of some older work)
+
+      * [Github](https://github.com/LynnSpyre) (The old account that I'm locked
+      out of)
+
+      * [Booth](https://lynnspyre.booth.pm/)
+
+      * [Twitch](https://www.twitch.tv/lynnfusion)
+
+      * [Deviant Art](https://www.deviantart.com/lynnfusion)
+
+      * [Cult of Apathy](https://open.spotify.com/show/2Fc2yVMQu1l411boyNvzNa)
+      (on Spotify) - A podcast about the confluence of art and technology
+
+      * [Lustlab](https://www.lustlab.ai/) \- Sexual Wellness and
+      non-exploitative nsfw image generation
 ---
 
