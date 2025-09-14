@@ -3,14 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} | {{ site.name }}</title>
-    <meta name="description" content="{{ description or site.title + ' - ' + site.description }}">
-    
+    <title>{{ title }}{% if title != site.name %} | {{ site.name }}{% endif %}</title>
+    <meta name="description" content="{{ description or excerpt or site.title + ' - ' + site.description }}">
+    <meta name="author" content="{{ site.name }}">
+    <meta name="keywords" content="{% if tags %}{{ tags | join(', ') }}, {% endif %}art, AI art, noise painting, digital art, Lynn Cole, dadaism">
+
     <!-- Open Graph -->
-    <meta property="og:title" content="{{ title }}">
-    <meta property="og:description" content="{{ description }}">
-    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ title }}{% if title != site.name %} | {{ site.name }}{% endif %}">
+    <meta property="og:description" content="{{ description or excerpt or site.title + ' - ' + site.description }}">
+    <meta property="og:type" content="{% if page.url == '/' %}website{% elif '/posts/' in page.url %}article{% elif '/gallery/' in page.url %}article{% else %}website{% endif %}">
     <meta property="og:url" content="https://lynncole.art{{ page.url }}">
+    <meta property="og:site_name" content="{{ site.name }}">
+    <meta property="og:locale" content="en_US">
+    {% if gallery and gallery.firstImage %}
+    <meta property="og:image" content="{{ gallery.firstImage }}">
+    <meta property="og:image:alt" content="{{ title }} - Gallery preview">
+    {% elif firstImage %}
+    <meta property="og:image" content="{{ firstImage }}">
+    <meta property="og:image:alt" content="{{ title }} - Preview">
+    {% else %}
+    <meta property="og:image" content="https://lynncole.art/images/lynn-cole-og-image.jpg">
+    <meta property="og:image:alt" content="Lynn Cole Art - High Priestess of Dada">
+    {% endif %}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="{% if gallery and gallery.firstImage %}summary_large_image{% else %}summary{% endif %}">
+    <meta name="twitter:title" content="{{ title }}{% if title != site.name %} | {{ site.name }}{% endif %}">
+    <meta name="twitter:description" content="{{ description or excerpt or site.title + ' - ' + site.description }}">
+    {% if gallery and gallery.firstImage %}
+    <meta name="twitter:image" content="{{ gallery.firstImage }}">
+    {% elif firstImage %}
+    <meta name="twitter:image" content="{{ firstImage }}">
+    {% else %}
+    <meta name="twitter:image" content="https://lynncole.art/images/lynn-cole-og-image.jpg">
+    {% endif %}
+    <meta name="twitter:site" content="@lynncoleart">
+    <meta name="twitter:creator" content="@lynncoleart">
+
+    <!-- Additional SEO -->
+    <link rel="canonical" href="https://lynncole.art{{ page.url }}">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     
     <!-- RSS -->
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} RSS Feed" href="/feed.xml">
@@ -25,16 +57,82 @@
     
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
+    {% if page.url == '/' %}
     {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "{{ site.author.name }}",
-        "description": "{{ site.title }} - Artist and Developer",
-        "url": "{{ site.url }}",
-        "sameAs": [
-            "https://github.com/LynnColeArt"
-        ]
+        "@type": "WebSite",
+        "name": "{{ site.name }}",
+        "description": "{{ site.description }}",
+        "url": "https://lynncole.art",
+        "author": {
+            "@type": "Person",
+            "name": "Lynn Cole",
+            "description": "{{ site.title }} - Artist, AI Art Pioneer, Noise Painter",
+            "url": "https://lynncole.art",
+            "sameAs": [
+                "https://github.com/LynnColeArt",
+                "https://twitter.com/lynncoleart"
+            ]
+        }
     }
+    {% elif '/posts/' in page.url %}
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{{ title }}",
+        "description": "{{ description or excerpt }}",
+        "author": {
+            "@type": "Person",
+            "name": "Lynn Cole"
+        },
+        "datePublished": "{{ date | htmlDateString }}",
+        "dateModified": "{{ date | htmlDateString }}",
+        "publisher": {
+            "@type": "Person",
+            "name": "Lynn Cole"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://lynncole.art{{ page.url }}"
+        },
+        "keywords": "{{ tags | join(', ') if tags else '' }}"
+    }
+    {% elif '/gallery/' in page.url and gallery %}
+    {
+        "@context": "https://schema.org",
+        "@type": "ImageGallery",
+        "name": "{{ title }}",
+        "description": "{{ description }}",
+        "numberOfItems": {{ gallery.imageCount or 0 }},
+        "creator": {
+            "@type": "Person",
+            "name": "Lynn Cole"
+        },
+        "datePublished": "{{ gallery.date | htmlDateString }}",
+        "keywords": "{{ gallery.tags | join(', ') if gallery.tags else '' }}",
+        {% if gallery.firstImage %}
+        "image": {
+            "@type": "ImageObject",
+            "url": "{{ gallery.firstImage }}",
+            "caption": "{{ title }} - Preview"
+        },
+        {% endif %}
+        "url": "https://lynncole.art{{ page.url }}"
+    }
+    {% else %}
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "{{ title }}",
+        "description": "{{ description or site.description }}",
+        "url": "https://lynncole.art{{ page.url }}",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "{{ site.name }}",
+            "url": "https://lynncole.art"
+        }
+    }
+    {% endif %}
     </script>
 </head>
 <body>

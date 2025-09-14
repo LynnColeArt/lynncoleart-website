@@ -3,14 +3,42 @@ permalink: /sitemap.xml
 eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  {%- for page in collections.all %}
-  {%- if not page.data.excludeFromSitemap %}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Homepage - highest priority -->
   <url>
-    <loc>{{ site.url }}{{ page.url }}</loc>
+    <loc>https://lynncole.art/</loc>
     <lastmod>{{ page.date | htmlDateString }}</lastmod>
-    <changefreq>{{ page.data.changefreq or "monthly" }}</changefreq>
-    <priority>{{ page.data.priority or 0.5 }}</priority>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Main pages -->
+  {%- for page in collections.all %}
+  {%- if not page.data.excludeFromSitemap and page.url != "/" %}
+  <url>
+    <loc>https://lynncole.art{{ page.url }}</loc>
+    <lastmod>{{ page.date | htmlDateString }}</lastmod>
+    <changefreq>{% if '/posts/' in page.url %}monthly{% elif '/gallery/' in page.url %}weekly{% else %}{{ page.data.changefreq or "monthly" }}{% endif %}</changefreq>
+    <priority>{% if page.url == "/galleries/" or page.url == "/blog/" %}0.9{% elif '/posts/' in page.url %}0.7{% elif '/gallery/' in page.url %}0.8{% else %}{{ page.data.priority or 0.5 }}{% endif %}</priority>
+  </url>
+  {%- endif %}
+  {%- endfor %}
+
+  <!-- Galleries -->
+  {%- for gallery in galleries %}
+  {%- if not gallery.hidden %}
+  <url>
+    <loc>https://lynncole.art/gallery/{{ gallery.number }}/</loc>
+    <lastmod>{{ gallery.date | htmlDateString }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    {%- if gallery.firstImage %}
+    <image:image>
+      <image:loc>{{ gallery.firstImage }}</image:loc>
+      <image:caption>{{ gallery.title }}</image:caption>
+    </image:image>
+    {%- endif %}
   </url>
   {%- endif %}
   {%- endfor %}
