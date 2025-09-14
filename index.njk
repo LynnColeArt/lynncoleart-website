@@ -7,38 +7,8 @@ description: Latest posts and galleries from the High Priestess of Dada
 <h1>Timeline</h1>
 
 <div class="timeline">
-  {%- set posts = collections.posts -%}
-  {%- set allItems = [] -%}
-  
-  {# Add posts to timeline #}
-  {%- for post in posts -%}
-    {%- set allItems = (allItems.push(post), allItems) -%}
-  {%- endfor -%}
-  
-  {# Add galleries to timeline #}
-  {%- for gallery in galleries -%}
-    {%- if not gallery.hidden and not gallery.hideFromHomepage -%}
-      {%- set galleryItem = {
-        date: gallery.date,
-        url: '/gallery/' + gallery.number + '/',
-        data: {
-          title: gallery.title,
-          description: gallery.description,
-          tags: gallery.tags,
-          type: 'gallery',
-          imageCount: gallery.imageCount,
-          firstImage: gallery.firstImage,
-          issueNumber: gallery.number
-        }
-      } -%}
-      {%- set allItems = (allItems.push(galleryItem), allItems) -%}
-    {%- endif -%}
-  {%- endfor -%}
-  
-  {# Sort by date and limit to 20 most recent #}
-  {%- set sortedItems = allItems | sort(true, false, 'date') | reverse | limit(20) -%}
-  
-  {%- for item in sortedItems -%}
+  {# Use pre-sorted timeline collection, limit to 20 most recent #}
+  {%- for item in collections.timeline | limit(20) -%}
   {%- if not item.data.draft -%}
   <article class="timeline-item{%- if item.data.type == 'gallery' %} timeline-gallery{%- endif -%}">
     {%- if item.data.type == 'gallery' and item.data.firstImage -%}

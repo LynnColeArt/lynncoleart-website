@@ -44,6 +44,56 @@ module.exports = function(eleventyConfig) {
     return collectionApi.getFilteredByGlob("galleries/*.md").sort((a, b) => b.date - a.date);
   });
 
+  eleventyConfig.addCollection("timeline", async function(collectionApi) {
+    // Get all posts
+    const posts = collectionApi.getFilteredByGlob("posts/*.md");
+
+    // Get galleries
+    const galleries = await require('./_data/galleries.js')();
+
+    // Create combined timeline
+    let timelineItems = [];
+
+    // Add posts
+    posts.forEach(post => {
+      timelineItems.push({
+        date: post.date,
+        url: post.url,
+        data: {
+          ...post.data,
+          type: 'post'
+        }
+      });
+    });
+
+    // Add visible galleries
+    galleries.forEach(gallery => {
+      if (!gallery.hidden && !gallery.hideFromHomepage) {
+        timelineItems.push({
+          date: new Date(gallery.date),
+          url: `/gallery/${gallery.number}/`,
+          data: {
+            title: gallery.title,
+            description: gallery.description,
+            excerpt: gallery.description,
+            tags: gallery.tags,
+            type: 'gallery',
+            imageCount: gallery.imageCount,
+            firstImage: gallery.firstImage,
+            issueNumber: gallery.number
+          }
+        });
+      }
+    });
+
+    // Sort by date descending (newest first)
+    return timelineItems.sort((a, b) => {
+      const dateA = a.date instanceof Date ? a.date : new Date(a.date);
+      const dateB = b.date instanceof Date ? b.date : new Date(b.date);
+      return dateB - dateA;
+    });
+  });
+
   eleventyConfig.addCollection("tagList", async function(collection) {
     let tagSet = new Set();
     
