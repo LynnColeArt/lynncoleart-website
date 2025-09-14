@@ -10,7 +10,7 @@ eleventyNavigation:
 <h1>Blog Posts</h1>
 
 <div class="timeline">
-  {%- for post in collections.posts | reverse -%}
+  {%- for post in collections.posts -%}
   {%- if not post.data.draft -%}
   <article class="timeline-item">
     <time class="timeline-meta" datetime="{{ post.date | htmlDateString }}">

@@ -7,7 +7,7 @@ description: Latest posts and galleries from the High Priestess of Dada
 <h1>Timeline</h1>
 
 <div class="timeline">
-  {%- set posts = collections.posts | reverse -%}
+  {%- set posts = collections.posts -%}
   {%- set allItems = [] -%}
   
   {# Add posts to timeline #}
@@ -36,7 +36,7 @@ description: Latest posts and galleries from the High Priestess of Dada
   {%- endfor -%}
   
   {# Sort by date and limit to 20 most recent #}
-  {%- set sortedItems = allItems | sort(true, false, 'date') | reverse | limit(20) -%}
+  {%- set sortedItems = allItems | sort(false, false, 'date') | limit(20) -%}
   
   {%- for item in sortedItems -%}
   {%- if not item.data.draft -%}

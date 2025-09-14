@@ -42,7 +42,7 @@ permalink: /tags/{{ tag | slug }}/
   {%- endfor -%}
   
   {# Combine and sort all items #}
-  {%- set allTaggedItems = taggedPosts | concat(taggedGalleries) | sort(true, false, 'date') | reverse -%}
+  {%- set allTaggedItems = taggedPosts | concat(taggedGalleries) | sort(false, false, 'date') -%}
   
   {%- for item in allTaggedItems -%}
   {%- if not item.data.draft -%}
