@@ -9,7 +9,7 @@ tags:
   - agents
   - workflows
 excerpt: >-
-  Context: There had been complications on Busy 11. The application had melted
+  Context: There had been complications on Busy 15. The application had melted
   under its own complexity at the time, and we were struggling to get it back
   into a working state at the time. Then, we got tool use to work. Finally.
   Klara's spooky attention on full display in this one.
