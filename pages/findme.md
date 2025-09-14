@@ -3,7 +3,7 @@ layout: modular-page.njk
 title: My Little Footprints Across The Internet
 permalink: /findme/
 blocks:
-  - id: '1757881418749'
+  - id: '1757882594229'
     type: text
     content: >
       You know what you need in your life at **this very moment**?
@@ -95,7 +95,7 @@ blocks:
       of songs I wrote by hand.
 
       * [The Dada Kidnapper's
-      Manifesto](https://www.actualartists.com/kidnapper.pdf) \- A breakdown on
+      Manifesto](https://archive.org/details/kidnapper_202401) \- A breakdown on
       post-aesthetic dadaism and ai. It's brilliant and terrible. Or possibly
       just terrible. I'm writing a
       followup[](https://github.com/LynnColeArt/MaterialSwitcherCC4Unity)
