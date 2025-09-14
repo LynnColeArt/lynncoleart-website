@@ -28,7 +28,7 @@ This is my open invitation.
 
 Welcome.
 
-Presently, I’m located somewhere on Planet Earth. That may change, given the… volatility.
+Presently, I’m located somewhere on Planet Earth. That may change, given the ongoing political instability.
 
 ---
 
