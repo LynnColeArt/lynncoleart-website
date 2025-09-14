@@ -3,7 +3,7 @@ layout: modular-page.njk
 title: My Little Footprints Across The Internet
 permalink: /findme/
 blocks:
-  - id: '1757883539997'
+  - id: '1757883631355'
     type: text
     content: >
       You know what you need in your life at **this very moment**?
@@ -17,7 +17,7 @@ blocks:
       **Business email:** [LynncoleArt@Gmail.com](mailto:lynncoleart@gmail.com)
 
 
-      **Current Fascinations:**
+      ## Current Fascinations
 
 
       * [Music Channel](https://www.youtube.com/@LynnColeMusic) \- Where I post
@@ -51,7 +51,7 @@ blocks:
       \- Early music archive on archive.org[](https://lynncole.bandcamp.com/)
 
 
-      **Social Media:**
+      ### Social Media
 
 
       * [Bluesky](https://bsky.app/profile/priestessofdada.bsky.social)
@@ -68,7 +68,7 @@ blocks:
       everything is up to date)
 
 
-      **Funky little tools I made:**
+      #### Funky little tools I made:
 
 
       * [Material Switcher for CC4/VRM HDRP Decoys in
@@ -85,7 +85,7 @@ blocks:
       Blender](https://github.com/LynnColeArt/cc3-blendshape-renamer)
 
 
-      **Past Fascinations:**
+      #### Past Fascinations:**
 
 
       * [Safe Room](https://holographicgf.bandcamp.com/album/safe-room) \- My
