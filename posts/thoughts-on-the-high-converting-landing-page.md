@@ -9,19 +9,10 @@ tags:
   - internet ephemera
   - anachronisms
 excerpt: >-
-  You’ve seen it before: the “High Converting Landing Page.” Fixed-width design,
-  dark or medium-blue background, and that off-white content box floating dead
-  center like a relic of another era. Back in the early 2000s, it was just
-  another quirky web template. Now, it’s a symbol for scams. The structure is
-  predictable: a bold pitch, reassurance, a ticking clock for FOMO, maybe a
-  testimonial, then more promises, more scarcity, outrageous claims, and finally
-  the close—where the real trap is sprung. Hidden checkboxes, preselected
-  “extras,” totals that mysteriously double. Refund guarantees? They range from
-  “reasonable” to “exceptional,” but are almost never honored. The psychology is
-  simple: overwhelm readers with a mix of useful info and deliberate confusion,
-  then claim “it was all clearly stated.” Legitimate products don’t need five
-  thousand words of smoke and mirrors. And yet, these pages keep ticking along,
-  blue boxes promising salvation, one binder-clip graphic at a time.
+  The “High Converting Landing Page” is a relic turned scam machine. Pitch,
+  reassurance, FOMO, impossible claims, and a pulsing green button hiding
+  upsells. Refunds sound great but rarely happen. And yet, the timers keep
+  ticking, promising salvation in a blue box.
 draft: false
 ---
 You’ve seen it. The “High Converting Landing Page.” That was actually its name for a minute.
