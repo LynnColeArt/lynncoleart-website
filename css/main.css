@@ -70,12 +70,21 @@ body {
 }
 
 .site-header h1 a {
-  color: var(--text-primary);
+  color: var(--purple-primary); /* Fallback color */
   text-decoration: none;
   background: linear-gradient(135deg, var(--purple-primary), var(--pink-primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* Fallback for browsers that don't support background-clip: text */
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .site-header h1 a {
+    color: var(--purple-primary) !important;
+    background: none !important;
+  }
 }
 
 .tagline {
@@ -181,10 +190,20 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 2.5rem;
+  color: var(--purple-primary); /* Fallback color */
   background: linear-gradient(135deg, var(--purple-primary), var(--pink-primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* Fallback for h1 when gradient text isn't supported */
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  h1 {
+    color: var(--purple-primary) !important;
+    background: none !important;
+  }
 }
 
 h2 {
