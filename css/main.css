@@ -802,3 +802,53 @@ code:not(pre code) {
   color: var(--text-secondary);
   padding: 2rem;
 }
+
+/* List styles in content areas */
+.content ul,
+.content ol,
+.post-content ul,
+.post-content ol,
+article ul,
+article ol,
+main ul,
+main ol {
+  padding-left: 2rem;
+  margin: 1rem 0;
+}
+
+.content ul li,
+.content ol li,
+.post-content ul li,
+.post-content ol li,
+article ul li,
+article ol li,
+main ul li,
+main ol li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+/* Nested lists */
+.content ul ul,
+.content ol ol,
+.content ul ol,
+.content ol ul,
+main ul ul,
+main ol ol,
+main ul ol,
+main ol ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Ensure navigation lists aren't affected */
+.nav-list,
+.tag-cloud {
+  padding-left: 0 !important;
+  list-style: none !important;
+}
+
+.nav-list li,
+.tag-cloud li {
+  margin-bottom: 0.5rem;
+}

@@ -5,7 +5,9 @@ module.exports = async function() {
   const GITHUB_OWNER = 'LynnColeArt';
   const GITHUB_REPO = 'lynncoleart-website';
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-  
+  const fs = require('fs');
+  const path = require('path');
+
   try {
     const headers = {
       'Accept': 'application/vnd.github.v3+json',
@@ -23,10 +25,9 @@ module.exports = async function() {
     );
     
     if (!response.ok) {
-      console.error('Failed to fetch galleries:', response.statusText);
-      return [];
+      throw new Error(`Failed to fetch galleries: ${response.statusText}`);
     }
-    
+
     const issues = await response.json();
     
     // Process issues to extract gallery data
@@ -88,6 +89,19 @@ module.exports = async function() {
     
   } catch (error) {
     console.error('Error fetching galleries:', error);
+
+    // Try to use cached data as fallback
+    try {
+      const cachePath = path.join(__dirname, 'galleries-cache.json');
+      if (fs.existsSync(cachePath)) {
+        console.log('Using cached galleries data');
+        const cachedData = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
+        return cachedData;
+      }
+    } catch (cacheError) {
+      console.error('Error reading cache:', cacheError);
+    }
+
     return [];
   }
 };

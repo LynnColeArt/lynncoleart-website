@@ -125,11 +125,29 @@ module.exports = function(eleventyConfig) {
   });
 
   // Filters
+  eleventyConfig.addFilter("jsonify", (value) => {
+    return JSON.stringify(value || null);
+  });
+
   eleventyConfig.addFilter("dateDisplay", (dateObj) => {
-    return new Date(dateObj).toLocaleDateString('en-US', {
+    // Handle date strings and Date objects properly
+    let date;
+    if (typeof dateObj === 'string') {
+      // If it's already a date string like "2025-09-14", parse it properly
+      if (dateObj.match(/^\d{4}-\d{2}-\d{2}$/)) {
+        date = new Date(dateObj + 'T12:00:00Z'); // Use noon UTC to avoid timezone issues
+      } else {
+        date = new Date(dateObj);
+      }
+    } else {
+      date = new Date(dateObj);
+    }
+
+    return date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
+      timeZone: 'UTC'
     });
   });
   

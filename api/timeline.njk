@@ -1,0 +1,32 @@
+---
+permalink: /api/timeline.json
+eleventyExcludeFromCollections: true
+---
+{%- set itemsPerPage = 20 -%}
+{%- set allItems = collections.timeline -%}
+{
+  "total": {{ allItems.length }},
+  "itemsPerPage": {{ itemsPerPage }},
+  "pages": {{ (allItems.length / itemsPerPage) | round(0, 'ceil') }},
+  "items": [
+    {%- for item in allItems | limit(200) -%}
+    {
+      "type": "{{ item.data.layout or 'post' }}",
+      "url": "{{ item.url }}",
+      "title": {{ item.data.title | jsonify | safe }},
+      "date": "{{ item.date | htmlDateString }}",
+      "displayDate": "{{ item.date | dateDisplay }}",
+      "excerpt": {{ item.data.excerpt | jsonify | safe }},
+      "tags": {{ item.data.tags | jsonify | safe }},
+      {%- if item.data.type == 'gallery' or item.data.firstImage -%}
+      "gallery": {
+        "number": {{ item.data.issueNumber or item.data.galleryNumber or item.data.number }},
+        "imageCount": {{ item.data.imageCount or 0 }},
+        "firstImage": {{ item.data.firstImage | jsonify | safe }}
+      },
+      {%- endif -%}
+      "isGallery": {% if item.data.type == 'gallery' %}true{% else %}false{% endif %}
+    }{%- if not loop.last -%},{%- endif -%}
+    {%- endfor -%}
+  ]
+}

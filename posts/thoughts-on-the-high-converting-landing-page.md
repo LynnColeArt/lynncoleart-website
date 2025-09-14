@@ -1,7 +1,7 @@
 ---
 layout: post.njk
 title: Thoughts on The High Converting Landing Page
-date: '2025-09-14T13:10:00.000Z'
+date: '2025-09-14T09:00:00.000Z'
 tags:
   - web design
   - html

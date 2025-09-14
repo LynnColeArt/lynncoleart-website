@@ -1,0 +1,30 @@
+[
+  {
+    "number": 14,
+    "title": "Recent Renders 09/14/25",
+    "description": "These are some renders based on the latest batch of noise paintings. All of the posted ones, and a few you haven't seen, that I might have forgotten to save. Sometimes it's transient, you edit and paint over between renders to riff on what the computer is doing.",
+    "date": "2025-09-14T15:00:00.000Z",
+    "tags": ["ai-art", "renders", "stable diffusion"],
+    "hidden": false,
+    "hideFromHomepage": false,
+    "imageCount": 21,
+    "firstImage": "https://raw.githubusercontent.com/LynnColeArt/lynncoleart-website/main/images/galleries/gallery-14-1757879318963-00039-A_seamless_collage_tile__chaotic_and_richly_layered__made_from_fragmented_product_photos__1980s_and_1990s_internet_ephemera__scr.png",
+    "images": [
+      "https://raw.githubusercontent.com/LynnColeArt/lynncoleart-website/main/images/galleries/gallery-14-1757879318963-00039-A_seamless_collage_tile__chaotic_and_richly_layered__made_from_fragmented_product_photos__1980s_and_1990s_internet_ephemera__scr.png"
+    ]
+  },
+  {
+    "number": 13,
+    "title": "Recent noise paintings 09/14/25",
+    "description": "If you're new here, these are are noise paintings. Noise painting is an artform where you create incongruent signals in ai image generators, by presenting them with hand made pieces of art that are designed to subvert the machine, and break it out of safe mode. A sort of jailbreak in lines and shapes that causes the machine to hallucinate outside it's dataset.",
+    "date": "2025-09-14T10:00:00.000Z",
+    "tags": ["noise painting", "digital art"],
+    "hidden": false,
+    "hideFromHomepage": false,
+    "imageCount": 7,
+    "firstImage": "https://raw.githubusercontent.com/LynnColeArt/lynncoleart-website/main/images/galleries/gallery-13-1757863595928-document3.jpg",
+    "images": [
+      "https://raw.githubusercontent.com/LynnColeArt/lynncoleart-website/main/images/galleries/gallery-13-1757863595928-document3.jpg"
+    ]
+  }
+]
